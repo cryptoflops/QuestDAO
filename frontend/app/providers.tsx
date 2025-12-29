@@ -18,7 +18,7 @@ const metadata = {
 }
 
 // 3. Create the AppKit instance (Optional - only if valid ID is provided)
-if (projectId && projectId !== 'YOUR_PROJECT_ID') {
+if (typeof window !== 'undefined' && projectId && projectId !== 'YOUR_PROJECT_ID') {
     try {
         createAppKit({
             networks: [mainnet],
