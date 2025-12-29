@@ -2,7 +2,7 @@
 
 import { AppKitProvider as ReownAppKit, createAppKit } from '@reown/appkit/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { mainnet } from '@reown/appkit/networks';
 import dynamic from 'next/dynamic';
 
@@ -15,30 +15,34 @@ const projectId = process.env.NEXT_PUBLIC_REOWN_PROJECT_ID || 'ad6eb7e430d252040
 const metadata = {
     name: 'QuestDAO',
     description: 'Reputation-based Education Protocol',
-    url: 'https://questdao.stack', // origin must match your domain & subdomain
+    url: typeof window !== 'undefined' ? window.location.origin : 'https://questdao.stack',
     icons: ['https://avatars.githubusercontent.com/u/37784886']
-}
-
-// 3. Create the AppKit instance (Optional - only if valid ID is provided)
-if (typeof window !== 'undefined' && projectId && projectId !== 'YOUR_PROJECT_ID') {
-    try {
-        createAppKit({
-            networks: [mainnet],
-            projectId,
-            metadata,
-            features: {
-                analytics: true
-            }
-        });
-    } catch (e) {
-        console.warn('AppKit initialization failed:', e);
-    }
 }
 
 // 4. Create QueryClient
 const queryClient = new QueryClient();
 
+let appKitInitialized = false;
+
 export function Providers({ children }: { children: ReactNode }) {
+    useEffect(() => {
+        if (!appKitInitialized && projectId && projectId !== 'YOUR_PROJECT_ID') {
+            try {
+                createAppKit({
+                    networks: [mainnet],
+                    projectId,
+                    metadata,
+                    features: {
+                        analytics: true
+                    }
+                });
+                appKitInitialized = true;
+            } catch (e) {
+                console.warn('AppKit initialization failed:', e);
+            }
+        }
+    }, []);
+
     return (
         <QueryClientProvider client={queryClient}>
             <WebGLBackground />
