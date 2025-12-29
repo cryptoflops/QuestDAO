@@ -5,8 +5,11 @@ import { AppConfig, UserSession } from '@stacks/connect';
 import { useState, useEffect } from 'react';
 import { IS_MAINNET } from '@/lib/constants';
 
+// SSR-safe UserSession initialization
 const appConfig = new AppConfig(['store_write', 'publish_data']);
-export const userSession = new UserSession({ appConfig });
+export const userSession = typeof window !== 'undefined'
+    ? new UserSession({ appConfig })
+    : { isUserSignedIn: () => false, signUserOut: () => { }, loadUserData: () => ({ profile: { stxAddress: {} } }) } as any;
 
 export default function ConnectWallet() {
     const [mounted, setMounted] = useState(false);

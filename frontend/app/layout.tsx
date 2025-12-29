@@ -4,7 +4,9 @@ import './globals.css';
 import { Providers } from './providers';
 import Navbar from '@/components/Navbar';
 import MobileNav from '@/components/MobileNav';
-import WebGLBackground from '@/components/ui/WebGLBackground';
+import dynamic from 'next/dynamic';
+
+const WebGLBackground = dynamic(() => import('@/components/ui/WebGLBackground'), { ssr: false });
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-sans' });
