@@ -2,7 +2,7 @@
 
 **The Premier Educational Protocol for Bitcoin Layer-2 Architects.**
 
-QuestDAO is a decentralized educational platform built on the Stacks blockchain. It incentivizes learning through smart contract-validated quests, rewarding students with XP and non-transferable Soulbound Badges that build a verifiable on-chain reputation.
+QuestDAO is a decentralized education protocol on Stacks where developers master Clarity, earn Soulbound reputation badges, and govern the future of the guild.
 
 ---
 
