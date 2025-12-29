@@ -55,6 +55,7 @@
                 end-block: (+ block-height duration)
             })
             (var-set last-proposal-id proposal-id)
+            (print { event: "proposal-created", id: proposal-id, title: title })
             (ok proposal-id)
         )
     )
@@ -63,6 +64,7 @@
 (define-public (delegate (to principal))
     (begin
         (map-set delegations tx-sender to)
+        (print { event: "delegate-set", delegator: tx-sender, delegatee: to })
         (ok true)
     )
 )
@@ -107,6 +109,7 @@
                     abstain-votes: (if (is-eq vote-for "abstain") (+ (get abstain-votes current-proposal) u1) (get abstain-votes current-proposal))
                 })
             )
+            (print { event: "vote-cast", proposal: proposal-id, voter: tx-sender, choice: vote-for })
             (ok true)
         )
     )

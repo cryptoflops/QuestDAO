@@ -1,0 +1,53 @@
+{
+    "chainhooks": [
+        {
+            "uuid": "quest-completed-hook",
+            "name": "Quest Completed Notification",
+            "network": "mainnet",
+            "if_that": {
+                "print_event": {
+                    "contract_identifier": "SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ.quest-registry-v4",
+                    "contains": "quest-completed"
+                }
+            },
+            "then_that": {
+                "http_post": {
+                    "url": "https://quest-dao.vercel.app/api/webhooks/chainhook",
+                    "authorization_header": "Bearer ${CHAINHOOK_AUTH_TOKEN}"
+                }
+            }
+        },
+        {
+            "uuid": "proposal-created-hook",
+            "name": "New Proposal Alert",
+            "network": "mainnet",
+            "if_that": {
+                "print_event": {
+                    "contract_identifier": "SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ.dao-voting-v4",
+                    "contains": "proposal-created"
+                }
+            },
+            "then_that": {
+                "http_post": {
+                    "url": "https://quest-dao.vercel.app/api/webhooks/chainhook"
+                }
+            }
+        },
+        {
+            "uuid": "vote-cast-hook",
+            "name": "Governance Vote Tracker",
+            "network": "mainnet",
+            "if_that": {
+                "print_event": {
+                    "contract_identifier": "SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ.dao-voting-v4",
+                    "contains": "vote-cast"
+                }
+            },
+            "then_that": {
+                "http_post": {
+                    "url": "https://quest-dao.vercel.app/api/webhooks/chainhook"
+                }
+            }
+        }
+    ]
+}
