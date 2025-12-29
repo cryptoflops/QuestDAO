@@ -1,0 +1,39 @@
+---
+id: 0
+name: Mainnet deployment
+network: mainnet
+stacks-node: "https://api.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoin.blockstack.com:8332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-publish:
+            contract-name: sip-009-nft-trait
+            expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
+            cost: 728160
+            path: contracts/traits/sip-009-nft-trait.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: soulbound-badge-v2
+            expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
+            cost: 728400
+            path: contracts/soulbound-badge-v2.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: dao-voting-v4
+            expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
+            cost: 728640
+            path: contracts/dao-voting-v4.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: quest-registry-v4
+            expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
+            cost: 728430
+            path: contracts/quest-registry-v4.clar
+            anchor-block-only: true
+            clarity-version: 2
+      epoch: "2.5"

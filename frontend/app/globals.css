@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  /* Stacks Dynamic Palette - Direct Hex for Reliability */
+  --color-stacks-orange: #FF4B12;
+  --color-stacks-white: #FFFFFF;
+  --color-stacks-black: #000000;
+  --color-stacks-grey: #F5F5F7;
+  --color-stacks-dark: #111111;
+
+  /* Semantic Mappings */
+  --color-primary: #FF4B12;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #000000;
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-background: #FFFFFF;
+  --color-foreground: #000000;
+
+  --color-card: #FFFFFF;
+  --color-card-foreground: #000000;
+
+  --color-muted: #F5F5F7;
+  --color-muted-foreground: #666666;
+
+  --color-accent: #FF4B12;
+  --color-accent-foreground: #FFFFFF;
+
+  --color-border: #E5E5E7;
+  --color-input: #E5E5E7;
+  --color-ring: #FF4B12;
+
+  --border-width-thin: 0.5px;
+}
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --stacks-orange: #FF4B12;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif), serif;
+}

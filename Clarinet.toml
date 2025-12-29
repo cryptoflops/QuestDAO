@@ -1,0 +1,36 @@
+[project]
+name = "QuestDAO"
+description = "Educational Governance Platform on Stacks"
+authors = []
+telemetry = true
+cache_dir = "./.cache"
+requirements = []
+
+[contracts.soulbound-badge-v2]
+path = "contracts/soulbound-badge-v2.clar"
+clarity_version = 2
+epoch = 2.5
+
+[contracts.quest-registry-v4]
+path = "contracts/quest-registry-v4.clar"
+clarity_version = 2
+epoch = 2.5
+
+[contracts.sip-009-nft-trait]
+path = "contracts/traits/sip-009-nft-trait.clar"
+clarity_version = 2
+epoch = 2.5
+
+[contracts.dao-voting-v4]
+path = "contracts/dao-voting-v4.clar"
+clarity_version = 2
+epoch = 2.5
+
+[repl.analysis]
+passes = ["check_checker"]
+
+[repl.analysis.check_checker]
+strict = false
+trusted_sender = false
+trusted_caller = false
+callee_filter = false
