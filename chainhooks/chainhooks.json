@@ -13,7 +13,7 @@
             "then_that": {
                 "http_post": {
                     "url": "https://quest-dao.vercel.app/api/webhooks/chainhook",
-                    "authorization_header": "Bearer ${CHAINHOOK_AUTH_TOKEN}"
+                    "authorization_header": "Bearer ${QuestAfterparty}"
                 }
             }
         },

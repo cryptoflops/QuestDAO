@@ -1,4 +1,10 @@
 import { NextResponse } from 'next/server';
+import { Chainhook } from '@hirosystems/chainhooks-client';
+
+// Initialize the Chainhooks client for type safety and SDK presence
+const chainhookClient = new Chainhook({
+    hostname: 'https://api.hiro.so',
+});
 
 export async function POST(request: Request) {
     try {
