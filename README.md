@@ -1,6 +1,6 @@
 # QuestDAO 🏛️✨
 
-**The Cyber-Scholastic Academy for Bitcoin Layer-2 Architects.**
+**The Premier Educational Protocol for Bitcoin Layer-2 Architects.**
 
 QuestDAO is a decentralized educational platform built on the Stacks blockchain. It incentivizes learning through smart contract-validated quests, rewarding students with XP and non-transferable Soulbound Badges that build a verifiable on-chain reputation.
 
@@ -38,7 +38,7 @@ graph TD
 ### Core Smart Contracts
 - **`quest-registry-v4.clar`**: The central brain. Manages the curriculum, tracks user progress, and authorizes badge minting.
 - **`soulbound-badge-v2.clar`**: An extension of SIP-009. These NFTs are burned if transferred, ensuring reputation is earned, not bought.
-- **`dao-voting-v4.clar`**: The governance engine. Allows badge-holders to propose and vote on the future of the academy.
+- **`dao-voting-v4.clar`**: The governance engine. Allows badge-holders to propose and vote on the future of the protocol.
 
 ---
 
