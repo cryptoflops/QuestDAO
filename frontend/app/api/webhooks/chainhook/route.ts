@@ -2,6 +2,15 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
     try {
+        // 1. Authenticate Request
+        const authHeader = request.headers.get('authorization');
+        const authToken = process.env.CHAINHOOK_AUTH_TOKEN;
+
+        if (authToken && authHeader !== `Bearer ${authToken}`) {
+            console.warn('[Chainhook] Unauthorized access attempt blocked.');
+            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
         const payload = await request.json();
 
         // Log the incoming event for debugging
