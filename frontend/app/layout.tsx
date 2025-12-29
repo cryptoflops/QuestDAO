@@ -4,10 +4,6 @@ import './globals.css';
 import { Providers } from './providers';
 import Navbar from '@/components/Navbar';
 import MobileNav from '@/components/MobileNav';
-import dynamic from 'next/dynamic';
-
-const WebGLBackground = dynamic(() => import('@/components/ui/WebGLBackground'), { ssr: false });
-
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -25,7 +21,6 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
       <body className="antialiased min-h-screen pt-16 bg-transparent text-foreground selection:bg-stacks-orange selection:text-white">
         <Providers>
-          <WebGLBackground />
           <Navbar />
           {children}
           <MobileNav />

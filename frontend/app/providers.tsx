@@ -3,8 +3,10 @@
 import { AppKitProvider as ReownAppKit, createAppKit } from '@reown/appkit/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
-import { STACKS_MOCKNET, STACKS_TESTNET, STACKS_MAINNET } from '@stacks/network';
 import { mainnet } from '@reown/appkit/networks';
+import dynamic from 'next/dynamic';
+
+const WebGLBackground = dynamic(() => import('@/components/ui/WebGLBackground'), { ssr: false });
 
 // 1. Get projectId at https://cloud.reown.com
 const projectId = process.env.NEXT_PUBLIC_REOWN_PROJECT_ID || 'ad6eb7e430d2520405cc22b11451e738';
@@ -39,6 +41,7 @@ const queryClient = new QueryClient();
 export function Providers({ children }: { children: ReactNode }) {
     return (
         <QueryClientProvider client={queryClient}>
+            <WebGLBackground />
             {children}
         </QueryClientProvider>
     );
