@@ -6,7 +6,7 @@ import ProposalRow, { ProposalRowProps } from '@/components/ProposalRow';
 import Button from '@/components/ui/Button';
 import CreateProposalModal from '@/components/CreateProposalModal';
 import DelegateModal from '@/components/DelegateModal';
-import { fetchCallReadOnlyFunction, cvToJSON, uintCV } from '@stacks/transactions';
+import { fetchCallReadOnlyFunction, cvToJSON, uintCV } from '@/lib/stacks';
 import { NETWORK, CONTRACT_ADDRESS, CONTRACTS, API_URL } from '@/lib/constants';
 
 export default function GovernanceContent() {

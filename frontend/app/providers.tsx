@@ -12,6 +12,16 @@ const MobileNav = dynamic(() => import('@/components/MobileNav'), { ssr: false }
 // 4. Create QueryClient
 const queryClient = new QueryClient();
 
+// Add polyfills for Web3 libraries
+if (typeof window !== 'undefined') {
+    (window as any).global = window;
+    if (!(window as any).Buffer) {
+        import('buffer').then(({ Buffer }) => {
+            (window as any).Buffer = Buffer;
+        });
+    }
+}
+
 export function Providers({ children }: { children: ReactNode }) {
     return (
         <QueryClientProvider client={queryClient}>

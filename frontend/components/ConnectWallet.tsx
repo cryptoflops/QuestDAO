@@ -1,15 +1,9 @@
 'use client';
 
-import * as StacksConnect from '@stacks/connect';
-import { AppConfig, UserSession } from '@stacks/connect';
 import { useState, useEffect } from 'react';
 import { IS_MAINNET } from '@/lib/constants';
-
-// SSR-safe UserSession initialization
-const appConfig = new AppConfig(['store_write', 'publish_data']);
-export const userSession = typeof window !== 'undefined'
-    ? new UserSession({ appConfig })
-    : { isUserSignedIn: () => false, signUserOut: () => { }, loadUserData: () => ({ profile: { stxAddress: {} } }) } as any;
+import { userSession } from '@/lib/stacks-session';
+import * as StacksConnect from '@/lib/stacks';
 
 export default function ConnectWallet() {
     const [mounted, setMounted] = useState(false);

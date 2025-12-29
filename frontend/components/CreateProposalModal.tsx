@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import Button from './ui/Button';
-import * as StacksConnect from '@stacks/connect';
-import { uintCV, stringAsciiCV } from '@stacks/transactions';
+import * as StacksConnect from '@/lib/stacks';
+import { uintCV, stringAsciiCV } from '@/lib/stacks';
 import { CONTRACT_ADDRESS, CONTRACTS } from '@/lib/constants';
 
 interface CreateProposalModalProps {

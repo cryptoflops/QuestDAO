@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import Button from './ui/Button';
-import * as StacksConnect from '@stacks/connect';
-import { standardPrincipalCV } from '@stacks/transactions';
+import * as StacksConnect from '@/lib/stacks';
+import { standardPrincipalCV } from '@/lib/stacks';
 import { CONTRACT_ADDRESS, CONTRACTS, IS_MAINNET } from '@/lib/constants';
 
 interface DelegateModalProps {

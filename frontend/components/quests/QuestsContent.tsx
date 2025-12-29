@@ -10,13 +10,13 @@ import {
     boolCV,
     stringAsciiCV,
     PostConditionMode
-} from '@stacks/transactions';
+} from '@/lib/stacks';
 import { NETWORK, CONTRACT_ADDRESS, CONTRACTS, IS_MAINNET, API_URL } from '@/lib/constants';
-import { userSession } from '@/components/ConnectWallet';
+import { userSession } from '@/lib/stacks-session';
 import Container from '@/components/ui/Container';
 import QuestGrid from '@/components/QuestGrid';
 import QuestCard, { QuestCardProps } from '@/components/QuestCard';
-import * as StacksConnect from '@stacks/connect';
+import * as StacksConnect from '@/lib/stacks';
 
 export default function QuestsContent() {
     const [quests, setQuests] = useState<QuestCardProps[]>([]);

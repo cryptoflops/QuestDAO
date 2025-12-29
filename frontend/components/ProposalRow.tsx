@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Button from './ui/Button';
-import * as StacksConnect from '@stacks/connect';
-import { uintCV, boolCV, stringAsciiCV } from '@stacks/transactions';
+import * as StacksConnect from '@/lib/stacks';
+import { uintCV, boolCV, stringAsciiCV } from '@/lib/stacks';
 import { CONTRACT_ADDRESS, CONTRACTS } from '@/lib/constants';
 
 export interface ProposalRowProps {

@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Container from '@/components/ui/Container';
-import { fetchCallReadOnlyFunction, cvToJSON, uintCV, standardPrincipalCV } from '@stacks/transactions';
+import { fetchCallReadOnlyFunction, cvToJSON, uintCV, standardPrincipalCV } from '@/lib/stacks';
 import { NETWORK, CONTRACT_ADDRESS, CONTRACTS, IS_MAINNET } from '@/lib/constants';
-import { userSession } from '@/components/ConnectWallet';
+import { userSession } from '@/lib/stacks-session';
 
 export default function LeaderboardContent() {
     const [userXP, setUserXP] = useState<number>(0);

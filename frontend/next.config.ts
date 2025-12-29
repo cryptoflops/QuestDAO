@@ -2,8 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  transpilePackages: ['@stacks/connect', '@stacks/transactions', '@stacks/network', '@stacks/common', '@reown/appkit', '@reown/appkit-common', '@reown/appkit-adapter-solana'],
-  serverExternalPackages: [],
+  serverExternalPackages: [
+    '@stacks/connect',
+    '@stacks/transactions',
+    '@stacks/network',
+    '@stacks/common',
+    '@reown/appkit',
+    '@reown/appkit-common'
+  ],
 };
 
 export default nextConfig;

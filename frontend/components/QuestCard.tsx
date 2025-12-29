@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import Button from './ui/Button';
-import * as StacksConnect from '@stacks/connect';
-import { userSession } from './ConnectWallet';
-import { uintCV, PostConditionMode } from '@stacks/transactions';
+import * as StacksConnect from '@/lib/stacks';
+import { userSession } from '@/lib/stacks-session';
+import { uintCV, PostConditionMode } from '@/lib/stacks';
 import { CONTRACT_ADDRESS, CONTRACTS } from '@/lib/constants';
 
 export interface QuestCardProps {
