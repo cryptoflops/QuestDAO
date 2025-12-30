@@ -8,7 +8,7 @@ interface QuestModalProps {
     isOpen: boolean;
     onClose: () => void;
     content: QuestContent | null;
-    onComplete: () => void;
+    onComplete: (proof: string) => void;
     isProcessing: boolean;
     title: string;
     canComplete: boolean;
@@ -23,6 +23,8 @@ const QuestModal: React.FC<QuestModalProps> = ({
     title,
     canComplete
 }) => {
+    const [proof, setProof] = React.useState('');
+
     if (!isOpen || !content) return null;
 
     return (
@@ -92,13 +94,31 @@ const QuestModal: React.FC<QuestModalProps> = ({
                     </div>
                 </div>
 
+                {/* Knowledge Check Section */}
+                <div className="px-8 md:px-16 py-8 bg-black/[0.02] border-t border-black/5">
+                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-black/40 mb-4 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF4B12]"></span>
+                        Knowledge Check
+                    </h4>
+                    <p className="text-sm font-sans font-bold text-black mb-4">
+                        {content.knowledgeCheck}
+                    </p>
+                    <input
+                        type="text"
+                        value={proof}
+                        onChange={(e) => setProof(e.target.value)}
+                        placeholder="Enter the secret proof..."
+                        className="w-full bg-white border border-black/10 rounded-2xl px-6 py-4 font-mono text-sm focus:outline-none focus:border-[#FF4B12] transition-colors shadow-inner"
+                    />
+                </div>
+
                 {/* Footer Action */}
                 <div className="px-8 md:px-16 py-10 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6 bg-white shrink-0">
                     <div className="flex flex-col gap-2">
                         <p className="text-xs font-sans font-bold text-black/40 uppercase tracking-widest text-center md:text-left">
-                            Proof of Knowledge Required:
+                            Proof of Logic Required:
                         </p>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 text-center md:text-left">
                             <div className={`w-1.5 h-1.5 rounded-full ${canComplete ? 'bg-green-500' : 'bg-[#FF4B12]'}`}></div>
                             <span className={`text-[10px] font-bold uppercase tracking-[0.1em] ${canComplete ? 'text-black/60' : 'text-[#FF4B12]'}`}>
                                 {content.requirement}: {content.requirementDescription}
@@ -106,14 +126,14 @@ const QuestModal: React.FC<QuestModalProps> = ({
                         </div>
                     </div>
                     <button
-                        onClick={onComplete}
-                        disabled={isProcessing || !canComplete}
+                        onClick={() => onComplete(proof)}
+                        disabled={isProcessing || !canComplete || !proof.trim()}
                         className={`group relative px-12 py-5 rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all shadow-2xl w-full md:w-auto
-                            ${canComplete ? 'bg-black text-white hover:scale-110 active:scale-95' : 'bg-black/5 text-black/20 cursor-not-allowed'}
+                            ${(canComplete && proof.trim()) ? 'bg-black text-white hover:scale-110 active:scale-95' : 'bg-black/5 text-black/20 cursor-not-allowed'}
                         `}
                     >
-                        <span className="relative z-10">{isProcessing ? 'Verifying Architecture...' : 'Complete Module & Mint Badge'}</span>
-                        {canComplete && <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>}
+                        <span className="relative z-10">{isProcessing ? 'Verifying Logic...' : 'Mint Badge (on-chain proof)'}</span>
+                        {(canComplete && proof.trim()) && <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>}
                     </button>
                 </div>
             </div>
