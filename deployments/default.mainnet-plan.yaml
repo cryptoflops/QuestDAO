@@ -30,10 +30,10 @@ plan:
             anchor-block-only: true
             clarity-version: 2
         - contract-publish:
-            contract-name: quest-registry-v4
+            contract-name: quest-registry-v5
             expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
             cost: 728430
-            path: contracts/quest-registry-v4.clar
+            path: contracts/quest-registry-v5.clar
             anchor-block-only: true
             clarity-version: 2
       epoch: "2.5"

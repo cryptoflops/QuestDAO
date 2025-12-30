@@ -16,6 +16,11 @@ path = "contracts/quest-registry-v4.clar"
 clarity_version = 2
 epoch = 2.5
 
+[contracts.quest-registry-v5]
+path = "contracts/quest-registry-v5.clar"
+clarity_version = 2
+epoch = 2.5
+
 [contracts.sip-009-nft-trait]
 path = "contracts/traits/sip-009-nft-trait.clar"
 clarity_version = 2
