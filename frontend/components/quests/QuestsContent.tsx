@@ -390,7 +390,7 @@ export default function QuestsContent() {
 
                                         sc.openContractCall({
                                             contractAddress: CONTRACT_ADDRESS,
-                                            contractName: 'quest-registry-v4',
+                                            contractName: CONTRACTS.REGISTRY,
                                             functionName: 'create-quest',
                                             functionArgs: [
                                                 stringAsciiCV(questToSeed.title),
