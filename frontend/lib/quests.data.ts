@@ -6,6 +6,7 @@ export interface QuestContent {
     requirement: string;
     requirementDescription: string;
     knowledgeCheck: string;
+    type: 'logic' | 'identity';
 }
 
 export const QUESTS_LEARNING_DATA: Record<number, QuestContent> = {
@@ -16,6 +17,7 @@ export const QUESTS_LEARNING_DATA: Record<number, QuestContent> = {
         requirement: "Proof of Logic",
         requirementDescription: "Clarity is interpreted, not compiled. Enter the core property from Section 1.",
         knowledgeCheck: "How is a Clarity contract executed on a node?",
+        type: 'logic',
         content: `
 # Clarity Fundamentals: The Logic of Certainty
 
@@ -45,6 +47,7 @@ A Clarity contract's execution path is predictable. There are no infinite loops.
         requirement: "Proof of Logic",
         requirementDescription: "Stacks allows users to set limits on contract interactions. Name the feature.",
         knowledgeCheck: "What is the primary mechanism used to protect user assets on Stacks?",
+        type: 'logic',
         content: `
 # Smart Contract Safety: Shielding the Ledger
 
@@ -71,6 +74,7 @@ Avoid complex, clever shortcuts. Writing readable Clarity is the best way to ens
         requirement: "Proof of Logic",
         requirementDescription: "Soulbound Badges are assets with a specific restriction. Identify it.",
         knowledgeCheck: "What is the defining characteristic of a Soulbound Badge compared to standard NFTs?",
+        type: 'logic',
         content: `
 # SIP-009 NFT Mastery: Identity as an Asset
 
@@ -93,6 +97,7 @@ Minting is authorized only by the Registry. This ensures that badges represent a
         requirement: "Proof of Merit",
         requirementDescription: "QuestDAO governance follows a specific weighted logic. What is it called?",
         knowledgeCheck: "How is vote weight determined in the QuestDAO Architect Suite?",
+        type: 'logic',
         content: `
 # DAO Architect Suite: The Logic of Collective Power
 
@@ -110,6 +115,29 @@ Steps from proposal to execution. Each step is verifiable and requires a quorum 
 
 ### 3. Sovereign Authority
 The DAO has the power to update protocol constants and authorize new curriculum modules. You are now the guardian of the guild.
+        `
+    },
+    5: {
+        id: 5,
+        objectives: ["Secure a BNS name", "Verify on-chain identity", "Link ecosystem reputation"],
+        readingTime: "3 min",
+        requirement: "Proof of Identity",
+        requirementDescription: "Verify ownership of a .btc or .stx name to maximize your merit.",
+        knowledgeCheck: "Enter your BNS name (e.g. static.btc) to verify ownership.",
+        type: 'identity',
+        content: `
+# Digital Identity: The BNS Pillar
+
+Bitcoin Naming Service (BNS) is more than a handle; it is a decentralized identity anchor on the Bitcoin L1, broadcasted via Stacks.
+
+### 1. Sovereignty
+Your name is not rented; it is owned. It lives in a Stacks data map, tied to your principal. 
+
+### 2. Reputation Anchor
+In QuestDAO, a BNS name acts as a multiplier for your visibility. It proves you are not a sybil, but a committed member of the ecosystem.
+
+### 3. Verification
+This module uses a direct contract-call to the BNS registry. We check the owner-info for your provided name.
         `
     }
 };

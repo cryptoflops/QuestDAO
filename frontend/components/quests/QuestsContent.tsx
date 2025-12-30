@@ -182,7 +182,7 @@ export default function QuestsContent() {
         setIsProcessing(true);
 
         const idNum = parseInt(selectedQuestId);
-        const secretBuffer = new TextEncoder().encode(proof.trim().toLowerCase());
+        const sc = StacksConnect as any;
 
         if (!userSession.isUserSignedIn()) {
             alert("Please connect your wallet first.");
@@ -190,15 +190,28 @@ export default function QuestsContent() {
             return;
         }
 
-        const sc = StacksConnect as any;
+        const isIdentity = learningData?.type === 'identity';
+
+        // Helper to parse BNS name
+        const parseBNS = (full: string) => {
+            const parts = full.split('.');
+            return {
+                name: parts[0] || '',
+                namespace: parts[1] || ''
+            };
+        };
 
         const options = {
             contractAddress: CONTRACT_ADDRESS,
             contractName: CONTRACTS.REGISTRY,
-            functionName: 'complete-quest',
-            functionArgs: [
+            functionName: isIdentity ? 'claim-bns-quest' : 'complete-quest',
+            functionArgs: isIdentity ? [
                 uintCV(idNum),
-                bufferCV(secretBuffer)
+                bufferCV(new TextEncoder().encode(parseBNS(proof).name)),
+                bufferCV(new TextEncoder().encode(parseBNS(proof).namespace))
+            ] : [
+                uintCV(idNum),
+                bufferCV(new TextEncoder().encode(proof.trim().toLowerCase()))
             ],
             postConditionMode: PostConditionMode.Allow,
             network: NETWORK,
@@ -357,14 +370,15 @@ export default function QuestsContent() {
                                 <button
                                     onClick={async () => {
                                         const curriculum = [
-                                            { title: "Clarity Fundamentals", xp: 100, fee: 100000 },
-                                            { title: "Smart Contract Safety", xp: 250, fee: 200000 },
-                                            { title: "SIP-009 NFT Mastery", xp: 500, fee: 500000 },
-                                            { title: "DAO Architect Suite", xp: 1000, fee: 1000000 }
+                                            { title: "Clarity Fundamentals", xp: 100, fee: 100000, hash: "ea6ad5037a5b193695c6a21d05145683584850c8e64ccd21a31e546fc05f7089" },
+                                            { title: "Smart Contract Safety", xp: 250, fee: 200000, hash: "939b1976d4ab93c672610bf736d583ee2f630d365705b1a4813e4b5dc8ef6962" },
+                                            { title: "SIP-009 NFT Mastery", xp: 500, fee: 500000, hash: "b8cc5a06fb3b0fc8d54505e891cab710d9220d2c47cc67bc3a4b2e9df53bb7dd" },
+                                            { title: "DAO Architect Suite", xp: 1000, fee: 1000000, hash: "7f66aa19767c0461cbf7cb755b8e222e0de892f243854d9fbbc627395828033f" },
+                                            { title: "BNS Identity Verification", xp: 300, fee: 50000, hash: "0000000000000000000000000000000000000000000000000000000000000000" } // Identity quests don't use hash logic but signature needs it
                                         ];
 
                                         const nextIdx = quests.length;
-                                        const questToSeed = curriculum[nextIdx] || { title: `Advanced Module ${nextIdx + 1}`, xp: 1500, fee: 2000000 };
+                                        const questToSeed = curriculum[nextIdx] || { title: `Advanced Module ${nextIdx + 1}`, xp: 1500, fee: 2000000, hash: "0000000000000000000000000000000000000000000000000000000000000000" };
 
                                         const sc = StacksConnect as any;
                                         sc.openContractCall({
@@ -374,7 +388,8 @@ export default function QuestsContent() {
                                             functionArgs: [
                                                 stringAsciiCV(questToSeed.title),
                                                 uintCV(questToSeed.xp),
-                                                uintCV(questToSeed.fee)
+                                                uintCV(questToSeed.fee),
+                                                bufferCV(Buffer.from(questToSeed.hash, 'hex'))
                                             ],
                                             postConditionMode: PostConditionMode.Allow,
                                             network: NETWORK,
