@@ -1,5 +1,5 @@
 
-;; Quest Registry v4 (`quest-registry-v4`)
+;; Quest Registry v5 (`quest-registry-v5`)
 ;; Manages available quests and verifies completion with Knowledge Proofs.
 
 (define-constant ERR-NOT-AUTHORIZED (err u100))
