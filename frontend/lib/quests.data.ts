@@ -5,6 +5,7 @@ export interface QuestContent {
     content: string;
     requirement: string;
     requirementDescription: string;
+    knowledgeCheck: string;
 }
 
 export const QUESTS_LEARNING_DATA: Record<number, QuestContent> = {
@@ -12,8 +13,9 @@ export const QUESTS_LEARNING_DATA: Record<number, QuestContent> = {
         id: 1,
         objectives: ["Understand Clarity's decidability", "Learn data-var and define-map", "Execute read-only functions"],
         readingTime: "5 min",
-        requirement: "BNS Name",
-        requirementDescription: "Own a .btc or .stx name to verify your unique identity.",
+        requirement: "Proof of Logic",
+        requirementDescription: "Clarity is interpreted, not compiled. Enter the core property from Section 1.",
+        knowledgeCheck: "How is a Clarity contract executed on a node?",
         content: `
 # Clarity Fundamentals: The Logic of Certainty
 
@@ -40,8 +42,9 @@ A Clarity contract's execution path is predictable. There are no infinite loops.
         id: 2,
         objectives: ["Master Post-Conditions", "Implement unwrap! and asserts!", "Protect against re-entrancy"],
         readingTime: "8 min",
-        requirement: "Quest 1 Complete",
-        requirementDescription: "Master the Fundamentals module before proceeding.",
+        requirement: "Proof of Logic",
+        requirementDescription: "Stacks allows users to set limits on contract interactions. Name the feature.",
+        knowledgeCheck: "What is the primary mechanism used to protect user assets on Stacks?",
         content: `
 # Smart Contract Safety: Shielding the Ledger
 
@@ -65,8 +68,9 @@ Avoid complex, clever shortcuts. Writing readable Clarity is the best way to ens
         id: 3,
         objectives: ["Understand SIP-009 standard", "Implement non-transferable traits", "Minting logic"],
         readingTime: "6 min",
-        requirement: "Quest 2 Complete",
-        requirementDescription: "Understand Contract Safety before architecting assets.",
+        requirement: "Proof of Logic",
+        requirementDescription: "Soulbound Badges are assets with a specific restriction. Identify it.",
+        knowledgeCheck: "What is the defining characteristic of a Soulbound Badge compared to standard NFTs?",
         content: `
 # SIP-009 NFT Mastery: Identity as an Asset
 
@@ -86,8 +90,9 @@ Minting is authorized only by the Registry. This ensures that badges represent a
         id: 4,
         objectives: ["Build voting mechanisms", "Implement merit-weighted logic", "Governance execution"],
         readingTime: "10 min",
-        requirement: "Quest 3 + 350 XP",
-        requirementDescription: "Earn sufficient XP and master NFTs to enter the high council.",
+        requirement: "Proof of Merit",
+        requirementDescription: "QuestDAO governance follows a specific weighted logic. What is it called?",
+        knowledgeCheck: "How is vote weight determined in the QuestDAO Architect Suite?",
         content: `
 # DAO Architect Suite: The Logic of Collective Power
 

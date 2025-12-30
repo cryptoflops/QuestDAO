@@ -9,7 +9,8 @@ import {
     contractPrincipalCV,
     boolCV,
     stringAsciiCV,
-    PostConditionMode
+    PostConditionMode,
+    bufferCV
 } from '@/lib/stacks';
 import { NETWORK, CONTRACT_ADDRESS, CONTRACTS, IS_MAINNET, API_URL } from '@/lib/constants';
 import { userSession } from '@/lib/stacks-session';
@@ -176,11 +177,12 @@ export default function QuestsContent() {
         setIsModalOpen(true);
     };
 
-    const handleCompleteQuest = async () => {
+    const handleCompleteQuest = async (proof: string) => {
         if (!selectedQuestId) return;
         setIsProcessing(true);
 
         const idNum = parseInt(selectedQuestId);
+        const secretBuffer = new TextEncoder().encode(proof.trim().toLowerCase());
 
         if (!userSession.isUserSignedIn()) {
             alert("Please connect your wallet first.");
@@ -194,7 +196,10 @@ export default function QuestsContent() {
             contractAddress: CONTRACT_ADDRESS,
             contractName: CONTRACTS.REGISTRY,
             functionName: 'complete-quest',
-            functionArgs: [uintCV(idNum)],
+            functionArgs: [
+                uintCV(idNum),
+                bufferCV(secretBuffer)
+            ],
             postConditionMode: PostConditionMode.Allow,
             network: NETWORK,
             appDetails: {
