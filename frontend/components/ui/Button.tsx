@@ -18,10 +18,10 @@ const Button: React.FC<ButtonProps> = ({
     const baseStyles = "inline-flex items-center justify-center font-medium transition-all focus:outline-none disabled:opacity-50 disabled:pointer-events-none";
 
     const variants = {
-        primary: "bg-primary text-white hover:bg-primary/90 shadow-sm rounded-lg",
-        secondary: "bg-secondary text-white hover:bg-stacks-dark rounded-lg",
-        ghost: "bg-transparent text-foreground hover:bg-muted/50 rounded-lg",
-        signature: "bg-primary text-white font-bold hover:scale-[1.05] active:scale-[0.95] shadow-xl shadow-primary/20 rounded-lg",
+        primary: "bg-primary text-white hover:bg-primary/90 shadow-sm rounded-full",
+        secondary: "bg-secondary text-white hover:bg-stacks-dark rounded-full",
+        ghost: "bg-transparent text-foreground hover:bg-muted/50 rounded-full",
+        signature: "bg-primary text-white font-bold hover:scale-[1.05] active:scale-[0.95] shadow-xl shadow-primary/20 rounded-full",
     };
 
     const sizes = {
