@@ -351,10 +351,10 @@ export default function QuestsContent() {
                                         const sc = StacksConnect as any;
                                         sc.openContractCall({
                                             contractAddress: CONTRACT_ADDRESS,
-                                            contractName: 'soulbound-badge-v2',
+                                            contractName: 'soulbound-badge-v3',
                                             functionName: 'set-authorized',
                                             functionArgs: [
-                                                contractPrincipalCV(CONTRACT_ADDRESS, CONTRACTS.REGISTRY),
+                                                contractPrincipalCV(CONTRACT_ADDRESS, 'quest-registry-v6'),
                                                 boolCV(true)
                                             ],
                                             postConditionMode: PostConditionMode.Allow,
@@ -363,12 +363,12 @@ export default function QuestsContent() {
                                                 name: 'QuestDAO Architect',
                                                 icon: window.location.origin + '/logo.png',
                                             },
-                                            onFinish: (data: any) => console.log('Registry V5 Authorized:', data)
+                                            onFinish: (data: any) => console.log('Registry V6 Authorized:', data)
                                         });
                                     }}
                                     className="group relative px-8 py-4 bg-black text-white rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.2em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
                                 >
-                                    <span className="relative z-10">1. Authorize Registry V5</span>
+                                    <span className="relative z-10">1. Authorize Registry V6</span>
                                     <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                                 </button>
 

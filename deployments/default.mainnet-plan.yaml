@@ -9,31 +9,17 @@ plan:
     - id: 0
       transactions:
         - contract-publish:
-            contract-name: sip-009-nft-trait
+            contract-name: soulbound-badge-v3
             expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
-            cost: 728160
-            path: contracts/traits/sip-009-nft-trait.clar
+            cost: 20830
+            path: contracts/soulbound-badge-v3.clar
             anchor-block-only: true
             clarity-version: 2
         - contract-publish:
-            contract-name: soulbound-badge-v2
+            contract-name: quest-registry-v6
             expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
-            cost: 728400
-            path: contracts/soulbound-badge-v2.clar
-            anchor-block-only: true
-            clarity-version: 2
-        - contract-publish:
-            contract-name: dao-voting-v4
-            expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
-            cost: 728640
-            path: contracts/dao-voting-v4.clar
-            anchor-block-only: true
-            clarity-version: 2
-        - contract-publish:
-            contract-name: quest-registry-v5
-            expected-sender: SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ
-            cost: 728430
-            path: contracts/quest-registry-v5.clar
+            cost: 45710
+            path: contracts/quest-registry-v6.clar
             anchor-block-only: true
             clarity-version: 2
       epoch: "2.5"

@@ -6,18 +6,13 @@ telemetry = true
 cache_dir = "./.cache"
 requirements = []
 
-[contracts.soulbound-badge-v2]
-path = "contracts/soulbound-badge-v2.clar"
+[contracts.soulbound-badge-v3]
+path = "contracts/soulbound-badge-v3.clar"
 clarity_version = 2
 epoch = 2.5
 
-[contracts.quest-registry-v4]
-path = "contracts/quest-registry-v4.clar"
-clarity_version = 2
-epoch = 2.5
-
-[contracts.quest-registry-v5]
-path = "contracts/quest-registry-v5.clar"
+[contracts.quest-registry-v6]
+path = "contracts/quest-registry-v6.clar"
 clarity_version = 2
 epoch = 2.5
 
