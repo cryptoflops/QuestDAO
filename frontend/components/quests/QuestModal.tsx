@@ -11,6 +11,7 @@ interface QuestModalProps {
     onComplete: () => void;
     isProcessing: boolean;
     title: string;
+    canComplete: boolean;
 }
 
 const QuestModal: React.FC<QuestModalProps> = ({
@@ -19,7 +20,8 @@ const QuestModal: React.FC<QuestModalProps> = ({
     content,
     onComplete,
     isProcessing,
-    title
+    title,
+    canComplete
 }) => {
     if (!isOpen || !content) return null;
 
@@ -92,17 +94,26 @@ const QuestModal: React.FC<QuestModalProps> = ({
 
                 {/* Footer Action */}
                 <div className="px-8 md:px-16 py-10 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6 bg-white shrink-0">
-                    <p className="text-xs font-sans font-bold text-black/40 uppercase tracking-widest text-center md:text-left">
-                        Read the module thoroughly. <br className="hidden md:block" />
-                        Completion requires a valid on-chain signature.
-                    </p>
+                    <div className="flex flex-col gap-2">
+                        <p className="text-xs font-sans font-bold text-black/40 uppercase tracking-widest text-center md:text-left">
+                            Proof of Knowledge Required:
+                        </p>
+                        <div className="flex items-center gap-3">
+                            <div className={`w-1.5 h-1.5 rounded-full ${canComplete ? 'bg-green-500' : 'bg-[#FF4B12]'}`}></div>
+                            <span className={`text-[10px] font-bold uppercase tracking-[0.1em] ${canComplete ? 'text-black/60' : 'text-[#FF4B12]'}`}>
+                                {content.requirement}: {content.requirementDescription}
+                            </span>
+                        </div>
+                    </div>
                     <button
                         onClick={onComplete}
-                        disabled={isProcessing}
-                        className="group relative px-12 py-5 bg-black text-white rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all hover:scale-110 active:scale-95 shadow-2xl w-full md:w-auto"
+                        disabled={isProcessing || !canComplete}
+                        className={`group relative px-12 py-5 rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all shadow-2xl w-full md:w-auto
+                            ${canComplete ? 'bg-black text-white hover:scale-110 active:scale-95' : 'bg-black/5 text-black/20 cursor-not-allowed'}
+                        `}
                     >
                         <span className="relative z-10">{isProcessing ? 'Verifying Architecture...' : 'Complete Module & Mint Badge'}</span>
-                        <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                        {canComplete && <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>}
                     </button>
                 </div>
             </div>

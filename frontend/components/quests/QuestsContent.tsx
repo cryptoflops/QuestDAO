@@ -32,6 +32,7 @@ export default function QuestsContent() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedQuestId, setSelectedQuestId] = useState<string | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [userXP, setUserXP] = useState(0);
 
     const CONTRACT_NAME = CONTRACTS.REGISTRY;
 
@@ -120,6 +121,8 @@ export default function QuestsContent() {
                     if (!qData) continue;
 
                     let isCompleted = false;
+                    let uXP = 0;
+
                     if (userAddress) {
                         const progressResult = await fetchCallReadOnlyFunction({
                             contractAddress: CONTRACT_ADDRESS,
@@ -130,6 +133,21 @@ export default function QuestsContent() {
                             senderAddress: CONTRACT_ADDRESS
                         });
                         isCompleted = cvToJSON(progressResult).value;
+
+                        // Fetch User XP once
+                        if (i === 1) {
+                            const xpResult = await fetchCallReadOnlyFunction({
+                                contractAddress: CONTRACT_ADDRESS,
+                                contractName: CONTRACT_NAME,
+                                functionName: 'get-user-xp',
+                                functionArgs: [standardPrincipalCV(userAddress)],
+                                network,
+                                senderAddress: CONTRACT_ADDRESS
+                            });
+                            const xpVal = cvToJSON(xpResult).value;
+                            uXP = typeof xpVal === 'string' ? parseInt(xpVal) : parseInt(xpVal.value);
+                            setUserXP(uXP);
+                        }
                     }
 
                     list.push({
@@ -204,6 +222,34 @@ export default function QuestsContent() {
 
     const selectedQuestData = selectedQuestId ? quests.find(q => q.id === selectedQuestId) : null;
     const learningData = selectedQuestId ? QUESTS_LEARNING_DATA[parseInt(selectedQuestId)] : null;
+
+    const checkRequirements = () => {
+        if (!selectedQuestId || !learningData || !userAddress) return false;
+
+        const id = parseInt(selectedQuestId);
+
+        if (id === 1) {
+            // Quest 1: BNS Name requirement
+            // We can check if the user balance of names is > 0, but for now we look if they are signed in
+            return !!userAddress;
+        }
+
+        if (id === 2) {
+            return quests.find(q => q.id === "1")?.status === 'completed';
+        }
+
+        if (id === 3) {
+            return quests.find(q => q.id === "2")?.status === 'completed';
+        }
+
+        if (id === 4) {
+            return (quests.find(q => q.id === "3")?.status === 'completed') && (userXP >= 350);
+        }
+
+        return true;
+    };
+
+    const canComplete = checkRequirements();
 
     const getGridSpan = (index: number) => {
         const pattern = [
@@ -348,6 +394,7 @@ export default function QuestsContent() {
                 onComplete={handleCompleteQuest}
                 isProcessing={isProcessing}
                 title={selectedQuestData?.title || ''}
+                canComplete={canComplete}
             />
         </>
     );
