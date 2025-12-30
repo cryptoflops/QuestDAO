@@ -8,14 +8,14 @@ import { uintCV, PostConditionMode } from '@/lib/stacks';
 import { CONTRACT_ADDRESS, CONTRACTS } from '@/lib/constants';
 
 export interface QuestCardProps {
-    // ... existing props
     id: string;
     title: string;
     description: string;
     difficulty: 'Beginner' | 'Intermediate' | 'Wizard';
     reward: string;
     status: 'locked' | 'available' | 'completed';
-    className?: string; // Add className prop for grid spans
+    className?: string;
+    onBegin?: (id: string) => void;
 }
 
 const QuestCard: React.FC<QuestCardProps> = ({
@@ -25,53 +25,14 @@ const QuestCard: React.FC<QuestCardProps> = ({
     difficulty,
     reward,
     status,
-    className = ''
+    className = '',
+    onBegin
 }) => {
     const isLocked = status === 'locked';
     const isCompleted = status === 'completed';
-    const [isProcessing, setIsProcessing] = useState(false);
 
-    // Hardcoded for Devnet/Testnet
-    const CONTRACT_NAME = CONTRACTS.REGISTRY;
-
-    const handleComplete = () => {
-        setIsProcessing(true);
-
-        // Safety check for user session
-        if (!userSession.isUserSignedIn()) {
-            alert("Please connect your wallet first.");
-            setIsProcessing(false);
-            return;
-        }
-
-        const sc = StacksConnect as any;
-
-        const options = {
-            contractAddress: CONTRACT_ADDRESS,
-            contractName: CONTRACT_NAME,
-            functionName: 'complete-quest',
-            functionArgs: [uintCV(parseInt(id))],
-            postConditionMode: PostConditionMode.Allow,
-            network: sc.StacksTestnet ? new sc.StacksTestnet() : undefined,
-            appDetails: {
-                name: 'QuestDAO',
-                icon: window.location.origin + '/logo.png',
-            },
-            onFinish: (data: any) => {
-                console.log('Quest Completed:', data);
-                setIsProcessing(false);
-            },
-            onCancel: () => {
-                setIsProcessing(false);
-            }
-        };
-
-        if (typeof sc.openContractCall === 'function') {
-            sc.openContractCall(options);
-        } else {
-            console.error('openContractCall not found');
-            setIsProcessing(false);
-        }
+    const handleAction = () => {
+        if (onBegin) onBegin(id);
     };
 
     return (
@@ -108,11 +69,10 @@ const QuestCard: React.FC<QuestCardProps> = ({
             <div className="flex items-center justify-between pt-6 border-t-[0.5px] border-black/5">
                 {status === 'available' && (
                     <button
-                        onClick={handleComplete}
-                        disabled={isProcessing}
+                        onClick={handleAction}
                         className="group relative px-6 py-3 bg-black text-white rounded-full font-sans font-bold text-xs uppercase tracking-[0.2em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
                     >
-                        <span className="relative z-10">{isProcessing ? 'Verifying...' : 'Begin Module'}</span>
+                        <span className="relative z-10">Begin Module</span>
                         <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                     </button>
                 )}

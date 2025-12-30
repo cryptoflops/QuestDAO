@@ -17,6 +17,8 @@ import Container from '@/components/ui/Container';
 import QuestGrid from '@/components/QuestGrid';
 import QuestCard, { QuestCardProps } from '@/components/QuestCard';
 import * as StacksConnect from '@/lib/stacks';
+import QuestModal from './QuestModal';
+import { QUESTS_LEARNING_DATA } from '@/lib/quests.data';
 
 export default function QuestsContent() {
     const [quests, setQuests] = useState<QuestCardProps[]>([]);
@@ -25,6 +27,11 @@ export default function QuestsContent() {
     const [refreshCount, setRefreshCount] = useState(0);
     const [blockHeight, setBlockHeight] = useState<number>(0);
     const [hasMounted, setHasMounted] = useState(false);
+
+    // Modal State
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedQuestId, setSelectedQuestId] = useState<string | null>(null);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     const CONTRACT_NAME = CONTRACTS.REGISTRY;
 
@@ -146,6 +153,58 @@ export default function QuestsContent() {
         fetchQuests();
     }, [refreshCount, userAddress]);
 
+    const handleBeginQuest = (id: string) => {
+        setSelectedQuestId(id);
+        setIsModalOpen(true);
+    };
+
+    const handleCompleteQuest = async () => {
+        if (!selectedQuestId) return;
+        setIsProcessing(true);
+
+        const idNum = parseInt(selectedQuestId);
+
+        if (!userSession.isUserSignedIn()) {
+            alert("Please connect your wallet first.");
+            setIsProcessing(false);
+            return;
+        }
+
+        const sc = StacksConnect as any;
+
+        const options = {
+            contractAddress: CONTRACT_ADDRESS,
+            contractName: CONTRACTS.REGISTRY,
+            functionName: 'complete-quest',
+            functionArgs: [uintCV(idNum)],
+            postConditionMode: PostConditionMode.Allow,
+            network: NETWORK,
+            appDetails: {
+                name: 'QuestDAO',
+                icon: window.location.origin + '/logo.png',
+            },
+            onFinish: (data: any) => {
+                console.log('Quest Completed:', data);
+                setIsProcessing(false);
+                setIsModalOpen(false);
+                setRefreshCount(prev => prev + 1);
+            },
+            onCancel: () => {
+                setIsProcessing(false);
+            }
+        };
+
+        if (typeof sc.openContractCall === 'function') {
+            sc.openContractCall(options);
+        } else {
+            console.error('openContractCall not found');
+            setIsProcessing(false);
+        }
+    };
+
+    const selectedQuestData = selectedQuestId ? quests.find(q => q.id === selectedQuestId) : null;
+    const learningData = selectedQuestId ? QUESTS_LEARNING_DATA[parseInt(selectedQuestId)] : null;
+
     const getGridSpan = (index: number) => {
         const pattern = [
             'md:col-span-8',
@@ -190,7 +249,10 @@ export default function QuestsContent() {
                     ) : (
                         quests.map((quest, index) => (
                             <div key={quest.id} className={`col-span-12 ${getGridSpan(index)}`}>
-                                <QuestCard {...quest} />
+                                <QuestCard
+                                    {...quest}
+                                    onBegin={handleBeginQuest}
+                                />
                             </div>
                         ))
                     )}
@@ -278,6 +340,15 @@ export default function QuestsContent() {
                     </Container>
                 </div>
             )}
+
+            <QuestModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                content={learningData || null}
+                onComplete={handleCompleteQuest}
+                isProcessing={isProcessing}
+                title={selectedQuestData?.title || ''}
+            />
         </>
     );
 }
