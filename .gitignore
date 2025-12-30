@@ -33,13 +33,13 @@ frontend/build/
 *.mp4
 *.resolved\ copy
 brain/
+
+# metadata
+.agent/
+.vercel
+.env*.local
+*-agent.md
+STACKS_ENGINEER.md
 implementation_plan*.md
 task.md
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-.agent/
-*.md
+walkthrough.md
