@@ -4,6 +4,8 @@
 
 QuestDAO is a decentralized education protocol on Stacks where developers master Clarity, earn Soulbound reputation badges, and govern the future of the guild.
 
+**Read our [Manifesto](file:///Users/psyhodivka/Projects/Stacks/QuestDAO/MANIFESTO.md) // Build for Truth. Architect for Eternity.**
+
 ---
 
 ## 🚀 Vision: Proof of Knowledge

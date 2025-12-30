@@ -32,7 +32,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             </button>
           </Link>
-          <Link href="#">
+          <Link href="/manifesto">
             <button className="px-12 py-5 bg-white/60 backdrop-blur-md border border-black/10 text-black rounded-full font-sans font-bold text-sm uppercase tracking-[0.2em] hover:bg-white/90 transition-all shadow-xl">
               Read Manifesto
             </button>
