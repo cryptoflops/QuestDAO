@@ -3,6 +3,8 @@ export interface QuestContent {
     objectives: string[];
     readingTime: string;
     content: string;
+    requirement: string;
+    requirementDescription: string;
 }
 
 export const QUESTS_LEARNING_DATA: Record<number, QuestContent> = {
@@ -10,6 +12,8 @@ export const QUESTS_LEARNING_DATA: Record<number, QuestContent> = {
         id: 1,
         objectives: ["Understand Clarity's decidability", "Learn data-var and define-map", "Execute read-only functions"],
         readingTime: "5 min",
+        requirement: "BNS Name",
+        requirementDescription: "Own a .btc or .stx name to verify your unique identity.",
         content: `
 # Clarity Fundamentals: The Logic of Certainty
 
@@ -36,6 +40,8 @@ A Clarity contract's execution path is predictable. There are no infinite loops.
         id: 2,
         objectives: ["Master Post-Conditions", "Implement unwrap! and asserts!", "Protect against re-entrancy"],
         readingTime: "8 min",
+        requirement: "Quest 1 Complete",
+        requirementDescription: "Master the Fundamentals module before proceeding.",
         content: `
 # Smart Contract Safety: Shielding the Ledger
 
@@ -59,6 +65,8 @@ Avoid complex, clever shortcuts. Writing readable Clarity is the best way to ens
         id: 3,
         objectives: ["Understand SIP-009 standard", "Implement non-transferable traits", "Minting logic"],
         readingTime: "6 min",
+        requirement: "Quest 2 Complete",
+        requirementDescription: "Understand Contract Safety before architecting assets.",
         content: `
 # SIP-009 NFT Mastery: Identity as an Asset
 
@@ -78,6 +86,8 @@ Minting is authorized only by the Registry. This ensures that badges represent a
         id: 4,
         objectives: ["Build voting mechanisms", "Implement merit-weighted logic", "Governance execution"],
         readingTime: "10 min",
+        requirement: "Quest 3 + 350 XP",
+        requirementDescription: "Earn sufficient XP and master NFTs to enter the high council.",
         content: `
 # DAO Architect Suite: The Logic of Collective Power
 
