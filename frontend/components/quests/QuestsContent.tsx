@@ -10,7 +10,8 @@ import {
     boolCV,
     stringAsciiCV,
     PostConditionMode,
-    bufferCV
+    bufferCV,
+    hexToBytes
 } from '@/lib/stacks';
 import { NETWORK, CONTRACT_ADDRESS, CONTRACTS, IS_MAINNET, API_URL } from '@/lib/constants';
 import { userSession } from '@/lib/stacks-session';
@@ -389,7 +390,7 @@ export default function QuestsContent() {
                                                 stringAsciiCV(questToSeed.title),
                                                 uintCV(questToSeed.xp),
                                                 uintCV(questToSeed.fee),
-                                                bufferCV(Buffer.from(questToSeed.hash, 'hex'))
+                                                bufferCV(hexToBytes(questToSeed.hash))
                                             ],
                                             postConditionMode: PostConditionMode.Allow,
                                             network: NETWORK,
