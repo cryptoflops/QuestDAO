@@ -3,16 +3,20 @@
 import { useState, useEffect } from 'react';
 import { IS_MAINNET } from '@/lib/constants';
 import { userSession } from '@/lib/stacks-session';
+import { defaultResolver } from '@/lib/bns-resolver';
 import * as StacksConnect from '@/lib/stacks';
 
 export default function ConnectWallet() {
     const [mounted, setMounted] = useState(false);
     const [address, setAddress] = useState<string | null>(null);
+    const [bnsName, setBnsName] = useState<string | null>(null);
 
     useEffect(() => {
         setMounted(true);
         if (userSession.isUserSignedIn()) {
-            setAddress(userSession.loadUserData().profile.stxAddress[IS_MAINNET ? 'mainnet' : 'testnet']);
+            const userAddress = userSession.loadUserData().profile.stxAddress[IS_MAINNET ? 'mainnet' : 'testnet'];
+            setAddress(userAddress);
+            defaultResolver.resolveName(userAddress).then(setBnsName);
         }
     }, []);
 
@@ -51,8 +55,8 @@ export default function ConnectWallet() {
             <div className="flex items-center gap-4">
                 <div className="flex flex-col items-end">
                     <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-stacks-black/20">Active</span>
-                    <span className="text-[12px] font-bold text-stacks-black font-sans">
-                        {address.slice(0, 6)}...{address.slice(-4)}
+                    <span className="text-[14px] font-bold text-stacks-black font-sans leading-none mt-1">
+                        {bnsName ?? `${address.slice(0, 6)}...${address.slice(-4)}`}
                     </span>
                 </div>
                 <button
