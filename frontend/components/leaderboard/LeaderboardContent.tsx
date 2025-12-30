@@ -5,10 +5,12 @@ import Container from '@/components/ui/Container';
 import { fetchCallReadOnlyFunction, cvToJSON, uintCV, standardPrincipalCV } from '@/lib/stacks';
 import { NETWORK, CONTRACT_ADDRESS, CONTRACTS, IS_MAINNET } from '@/lib/constants';
 import { userSession } from '@/lib/stacks-session';
+import { defaultResolver } from '@/lib/bns-resolver';
 
 export default function LeaderboardContent() {
     const [userXP, setUserXP] = useState<number>(0);
     const [userBadges, setUserBadges] = useState<number>(0);
+    const [userBnsName, setUserBnsName] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [hasMounted, setHasMounted] = useState(false);
 
@@ -87,6 +89,9 @@ export default function LeaderboardContent() {
         };
 
         fetchUserData();
+        if (userAddress) {
+            defaultResolver.resolveName(userAddress).then(setUserBnsName);
+        }
     }, [userAddress]);
 
     const legends = [
@@ -156,7 +161,7 @@ export default function LeaderboardContent() {
                             </div>
                             <div className="col-span-6 flex flex-col">
                                 <span className="font-sans font-bold text-xl text-black truncate max-w-[200px] md:max-w-none">
-                                    {userAddress}
+                                    {userBnsName ?? userAddress}
                                 </span>
                                 <span className="text-[10px] text-[#FF4B12] font-bold font-sans uppercase tracking-[0.2em] mt-2">
                                     ACTIVE ARCHITECT
