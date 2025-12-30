@@ -120,7 +120,7 @@ export default function GovernanceContent() {
                         <Button
                             variant="signature"
                             size="lg"
-                            className="px-12"
+                            className="px-12 rounded-full"
                             onClick={() => setIsCreateOpen(true)}
                         >
                             Submit Proposal
@@ -129,7 +129,7 @@ export default function GovernanceContent() {
                         <Button
                             variant="ghost"
                             size="lg"
-                            className="px-12 bg-white/60 backdrop-blur-md border border-border hover:bg-white/90"
+                            className="px-12 bg-white/60 backdrop-blur-md border border-border hover:bg-white/90 rounded-full"
                             onClick={() => setIsDelegateOpen(true)}
                         >
                             Delegate Votes

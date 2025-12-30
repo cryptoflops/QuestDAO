@@ -98,7 +98,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                 <div className="px-8 md:px-16 py-8 bg-black/[0.02] border-t border-black/5">
                     <h4 className="text-[10px] font-bold uppercase tracking-widest text-black/40 mb-4 flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#FF4B12]"></span>
-                        Knowledge Check
+                        {content.type === 'identity' ? 'Identity Verification' : 'Knowledge Check'}
                     </h4>
                     <p className="text-sm font-sans font-bold text-black mb-4">
                         {content.knowledgeCheck}
@@ -107,7 +107,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                         type="text"
                         value={proof}
                         onChange={(e) => setProof(e.target.value)}
-                        placeholder="Enter the secret proof..."
+                        placeholder={content.type === 'identity' ? "e.g. architect.btc" : "Enter the secret proof..."}
                         className="w-full bg-white border border-black/10 rounded-2xl px-6 py-4 font-mono text-sm focus:outline-none focus:border-[#FF4B12] transition-colors shadow-inner"
                     />
                 </div>
@@ -132,7 +132,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                             ${(canComplete && proof.trim()) ? 'bg-black text-white hover:scale-110 active:scale-95' : 'bg-black/5 text-black/20 cursor-not-allowed'}
                         `}
                     >
-                        <span className="relative z-10">{isProcessing ? 'Verifying Logic...' : 'Mint Badge (on-chain proof)'}</span>
+                        <span className="relative z-10">{isProcessing ? 'Verifying...' : content.type === 'identity' ? 'Verify Identity & Claim XP' : 'Mint Badge (on-chain proof)'}</span>
                         {(canComplete && proof.trim()) && <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>}
                     </button>
                 </div>
