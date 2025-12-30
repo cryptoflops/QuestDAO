@@ -114,7 +114,7 @@ export default function QuestsContent() {
                         contractAddress: CONTRACT_ADDRESS,
                         contractName: CONTRACT_NAME,
                         functionName: 'get-quest',
-                        functionArgs: [uintCV(i)],
+                        functionArgs: [uintCV(BigInt(i))],
                         network,
                         senderAddress: CONTRACT_ADDRESS
                     });
@@ -130,7 +130,7 @@ export default function QuestsContent() {
                             contractAddress: CONTRACT_ADDRESS,
                             contractName: CONTRACT_NAME,
                             functionName: 'has-completed',
-                            functionArgs: [standardPrincipalCV(userAddress), uintCV(i)],
+                            functionArgs: [standardPrincipalCV(userAddress), uintCV(BigInt(i))],
                             network,
                             senderAddress: CONTRACT_ADDRESS
                         });
@@ -207,11 +207,11 @@ export default function QuestsContent() {
             contractName: CONTRACTS.REGISTRY,
             functionName: isIdentity ? 'claim-bns-quest' : 'complete-quest',
             functionArgs: isIdentity ? [
-                uintCV(idNum),
+                uintCV(BigInt(idNum)),
                 bufferCV(new TextEncoder().encode(parseBNS(proof).name)),
                 bufferCV(new TextEncoder().encode(parseBNS(proof).namespace))
             ] : [
-                uintCV(idNum),
+                uintCV(BigInt(idNum)),
                 bufferCV(new TextEncoder().encode(proof.trim().toLowerCase()))
             ],
             postConditionMode: PostConditionMode.Allow,
@@ -359,6 +359,10 @@ export default function QuestsContent() {
                                             ],
                                             postConditionMode: PostConditionMode.Allow,
                                             network: NETWORK,
+                                            appDetails: {
+                                                name: 'QuestDAO Architect',
+                                                icon: window.location.origin + '/logo.png',
+                                            },
                                             onFinish: (data: any) => console.log('Registry V4 Authorized:', data)
                                         });
                                     }}
@@ -382,18 +386,24 @@ export default function QuestsContent() {
                                         const questToSeed = curriculum[nextIdx] || { title: `Advanced Module ${nextIdx + 1}`, xp: 1500, fee: 2000000, hash: "0000000000000000000000000000000000000000000000000000000000000000" };
 
                                         const sc = StacksConnect as any;
+                                        console.log('Seeding questToSeed:', questToSeed);
+
                                         sc.openContractCall({
                                             contractAddress: CONTRACT_ADDRESS,
-                                            contractName: CONTRACTS.REGISTRY,
+                                            contractName: 'quest-registry-v4',
                                             functionName: 'create-quest',
                                             functionArgs: [
                                                 stringAsciiCV(questToSeed.title),
-                                                uintCV(questToSeed.xp),
-                                                uintCV(questToSeed.fee),
+                                                uintCV(BigInt(questToSeed.xp)),
+                                                uintCV(BigInt(questToSeed.fee)),
                                                 bufferCV(hexToBytes(questToSeed.hash))
                                             ],
                                             postConditionMode: PostConditionMode.Allow,
                                             network: NETWORK,
+                                            appDetails: {
+                                                name: 'QuestDAO Architect',
+                                                icon: window.location.origin + '/logo.png',
+                                            },
                                             onFinish: (data: any) => console.log('Quest Seeded:', data)
                                         });
                                     }}
