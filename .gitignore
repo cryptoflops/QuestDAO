@@ -34,7 +34,7 @@ frontend/build/
 *.resolved\ copy
 brain/
 
-# metadata
+# development artifacts
 .agent/
 .vercel
 .env*.local
