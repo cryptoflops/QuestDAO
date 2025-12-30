@@ -1,6 +1,6 @@
 # QuestDAO 🏛️✨
 
-**The Premier Educational Protocol for Bitcoin Layer-2 Architects.**
+**Educational Protocol for Bitcoin Layer-2 Architects.**
 
 QuestDAO is a decentralized education protocol on Stacks where developers master Clarity, earn Soulbound reputation badges, and govern the future of the guild.
 
