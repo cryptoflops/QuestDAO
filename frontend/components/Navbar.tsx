@@ -17,6 +17,9 @@ export default function Navbar() {
 
                 {/* Links */}
                 <div className="hidden md:flex items-center gap-10">
+                    <Link href="/manifesto" className="text-[12px] font-bold text-stacks-black/60 hover:text-stacks-orange transition-colors font-sans uppercase tracking-[0.2em]">
+                        Manifesto
+                    </Link>
                     <Link href="/quests" className="text-[12px] font-bold text-stacks-black/60 hover:text-stacks-orange transition-colors font-sans uppercase tracking-[0.2em]">
                         Learn
                     </Link>
