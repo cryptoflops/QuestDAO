@@ -1,6 +1,7 @@
 
-;; Quest Registry v5 (`quest-registry-v5`)
+;; Quest Registry v6 (`quest-registry-v6`)
 ;; Manages available quests and verifies completion with Knowledge Proofs.
+;; Integrates with Soulbound Badge v3 for curriculum-specific rewards.
 
 (define-constant ERR-NOT-AUTHORIZED (err u100))
 (define-constant ERR-QUEST-NOT-FOUND (err u101))
@@ -112,8 +113,8 @@
         (map-set user-progress { user: user, quest-id: quest-id } true)
         (map-set user-xp user (+ current-xp xp))
         
-        ;; 6. Mint Badge
-        (contract-call? 'SP1TN1ERKXEM2H9TKKWGPGZVNVNEKS92M7M3CKVJJ.soulbound-badge-v2 mint user)
+        ;; 6. Mint Badge V3 with specific Quest ID
+        (contract-call? .soulbound-badge-v3 mint user quest-id)
     )
 )
 
@@ -138,7 +139,7 @@
         (map-set user-progress { user: user, quest-id: quest-id } true)
         (map-set user-xp user (+ current-xp xp))
         
-        ;; 4. Mint Badge
-        (contract-call? .soulbound-badge-v2 mint user)
+        ;; 4. Mint Badge V3 with specific Quest ID
+        (contract-call? .soulbound-badge-v3 mint user quest-id)
     )
 )

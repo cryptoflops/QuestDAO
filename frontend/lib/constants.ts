@@ -9,8 +9,8 @@ export const CONTRACT_ADDRESS = IS_MAINNET
 
 export const CONTRACTS = {
     VOTING: 'dao-voting-v4',
-    REGISTRY: 'quest-registry-v5',
-    BADGE: 'soulbound-badge-v2',
+    REGISTRY: 'quest-registry-v6',
+    BADGE: 'soulbound-badge-v3',
     TRAIT: 'sip-009-nft-trait'
 };
 
