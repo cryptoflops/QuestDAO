@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ConnectWallet from './ConnectWallet';
 
 export default function Navbar() {
@@ -7,12 +8,10 @@ export default function Navbar() {
             <div className="container mx-auto px-6 h-full flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
-                    <div className="w-10 h-10 rounded-lg bg-[#FF4B12] flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-500 shadow-lg shadow-orange-500/20">
-                        <span className="font-bold text-white text-xl font-serif">Q</span>
+                    <div className="w-10 h-10 rounded-[10px] flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-500 shadow-lg shadow-orange-500/20 overflow-hidden">
+                        <Image src="/qd-2.png" alt="QuestDAO Icon" width={40} height={40} className="w-full h-full object-cover" priority />
                     </div>
-                    <span className="text-2xl font-bold tracking-tighter text-black transition-colors font-serif">
-                        QuestDAO
-                    </span>
+                    <Image src="/qd-1.png" alt="QuestDAO" width={120} height={28} className="object-contain" priority />
                 </Link>
 
                 {/* Links */}
