@@ -9,6 +9,9 @@ const manrope = Manrope({ subsets: ['latin'], variable: '--font-sans' });
 export const metadata: Metadata = {
   title: 'QuestDAO | Proof of Skill',
   description: 'The first meritocratic Stacks academy. Learn Clarity, earn Soulbound Badges, and govern the protocol.',
+  other: {
+    'talentapp:project_verification': 'ca087a253a986b205e9d6578e475cf5d584c511b4714dde08c56be3f540fefa909c083c1c0a19ee7f159a15b88707c583b7ceb45e4372892ac278bb57689e474'
+  }
 };
 
 export default function RootLayout({
