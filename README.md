@@ -2,7 +2,7 @@
   <img src="frontend/public/qd-logo.png" alt="QuestDAO Logo" width="400" />
 </div>
 
-# QuestDAO 🏛️✨
+# QuestDAO
 
 **Educational Protocol for Bitcoin Layer-2 Architects.**
 
