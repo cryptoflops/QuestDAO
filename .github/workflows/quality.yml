@@ -2,10 +2,13 @@ name: Dependency Cache Validator
 
 on:
   schedule:
-    - cron: '14 3 * * *' 
+    - cron: '17 4 * * *' 
   push:
     branches: [ "main" ]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   validate:
@@ -23,7 +26,7 @@ jobs:
         node-version: 20
         
     - name: Validate Local Workspaces
-      run: npm install @cryptoflops/quest-dao-utils@latest --no-save
+      run: npm install @cryptoflops/aegis-stacks-tools@latest --no-save
       
     - name: Checksum Optimization
       run: |
