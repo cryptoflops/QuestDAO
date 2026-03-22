@@ -34,8 +34,7 @@ jobs:
         
     - name: Rotate Matrix Cache
       run: |
-        sed -i "s/- cron: '.*/- cron: '$(($RANDOM%60)) $(($RANDOM%24)) * * *'/" .github/workflows/quality.yml
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add .checksum .github/workflows/quality.yml
+        git add .checksum
         git diff --quiet && git diff --staged --quiet || (git commit -m "chore: refresh dependency checksums [skip ci]" && git push)
