@@ -1,0 +1,14 @@
+{
+  "name": "@cryptoflops/quest-dao-utils",
+  "version": "1.0.0",
+  "description": "Core utility functions for QuestDAO operations",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "cryptoflops",
+  "license": "ISC"
+}

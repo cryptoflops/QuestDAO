@@ -1,0 +1,39 @@
+{
+  "name": "quest-dao-client",
+  "version": "1.0.1",
+  "description": "Client library for QuestDAO escrow and voting.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "stacks",
+    "dao",
+    "quest",
+    "escrow",
+    "voting"
+  ],
+  "author": "QuestDAO Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cryptoflops/QuestDAO.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cryptoflops/QuestDAO/issues"
+  },
+  "homepage": "https://github.com/cryptoflops/QuestDAO#readme",
+  "dependencies": {
+    "@stacks/transactions": "^6.15.0",
+    "@stacks/network": "^6.17.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
