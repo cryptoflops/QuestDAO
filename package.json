@@ -1,0 +1,13 @@
+{
+  "name": "quest-dao-client",
+  "version": "1.0.1",
+  "description": "Educational Protocol for Bitcoin Layer-2 Architects",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cryptoflops/QuestDAO.git"
+  },
+  "keywords": ["stacks", "dao", "quest", "escrow", "voting"],
+  "author": "cryptoflops",
+  "license": "ISC"
+}
