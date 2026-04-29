@@ -1,5 +1,5 @@
 import { showConnect, AppConfig, UserSession, openContractCall } from '@stacks/connect';
-import { StacksMainnet } from '@stacks/network';
+import { STACKS_MAINNET } from '@stacks/network';
 import { PostConditionMode } from '@stacks/transactions';
 
 const appConfig = new AppConfig(['store_write', 'publish_data']);
@@ -28,7 +28,7 @@ export function authenticate() {
  * This is primarily used as a generic helper throughout the application.
  */
 export function executeContractCall(contractAddress: string, contractName: string, functionName: string) {
-    const network = new StacksMainnet();
+    const network = STACKS_MAINNET;
 
     openContractCall({
         network,
