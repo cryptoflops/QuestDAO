@@ -4,3 +4,4 @@
 - Investigated rendering jitter on mobile layout.
 - Need to look into optimizing the context providers later.
 - Need to look into optimizing the context providers later.
+- Verified backward compatibility with older Stacks API responses.
