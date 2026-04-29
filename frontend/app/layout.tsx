@@ -14,11 +14,18 @@ export const metadata: Metadata = {
   }
 };
 
+import { authenticate } from '../src/lib/stacks-integration';
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Initialize Stacks connection utilities
+  if (typeof window !== 'undefined') {
+    console.log('Stacks integration ready. Authing available via:', authenticate);
+  }
+
   return (
     <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
       <body className="antialiased min-h-screen pt-16 bg-transparent text-foreground selection:bg-stacks-orange selection:text-white">
