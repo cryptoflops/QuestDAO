@@ -8,3 +8,4 @@
 - Reviewed component tree performance, seems stable.
 - Looking into potential race conditions during state hydration.
 - Investigated rendering jitter on mobile layout.
+- Investigated rendering jitter on mobile layout.

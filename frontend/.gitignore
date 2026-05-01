@@ -48,3 +48,4 @@ next-env.d.ts
 # mnemonics and secrets
 Mainnet.toml
 Testnet.toml
+.env*.local
