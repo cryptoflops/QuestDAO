@@ -15,3 +15,4 @@
 - Verified backward compatibility with older Stacks API responses.
 - Adjusting padding to align with design specs.
 - Need to look into optimizing the context providers later.
+- Verified backward compatibility with older Stacks API responses.
