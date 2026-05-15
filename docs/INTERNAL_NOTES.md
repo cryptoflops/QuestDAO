@@ -24,3 +24,4 @@
 - Need to look into optimizing the context providers later.
 - Adjusting padding to align with design specs.
 - Verified backward compatibility with older Stacks API responses.
+- Fixed a minor typo in the internal documentation.
