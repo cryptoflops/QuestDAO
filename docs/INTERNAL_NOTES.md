@@ -28,3 +28,4 @@
 - Looking into potential race conditions during state hydration.
 - Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
+- Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
