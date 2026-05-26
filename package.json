@@ -9,5 +9,9 @@
   },
   "keywords": ["stacks", "dao", "quest", "escrow", "voting"],
   "author": "cryptoflops",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@stacks/connect": "^8.2.6",
+    "@stacks/transactions": "^7.4.0"
+  }
 }
