@@ -45,3 +45,4 @@
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
+- Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
