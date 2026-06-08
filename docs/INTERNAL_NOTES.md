@@ -109,3 +109,4 @@
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - Reviewed component tree performance after adding STX balance polling, no measurable regression.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
+- Investigated rendering jitter on mobile layout during wallet connection state changes.
