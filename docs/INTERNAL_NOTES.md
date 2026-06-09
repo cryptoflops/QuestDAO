@@ -116,3 +116,4 @@
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
+- The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
