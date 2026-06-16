@@ -178,3 +178,4 @@
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
+- Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
