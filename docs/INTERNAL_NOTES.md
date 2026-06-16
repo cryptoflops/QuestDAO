@@ -181,3 +181,4 @@
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
+- Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
