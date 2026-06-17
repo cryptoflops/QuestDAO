@@ -199,3 +199,4 @@
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
+- Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
