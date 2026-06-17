@@ -195,3 +195,4 @@
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
+- Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
