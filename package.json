@@ -1,7 +1,10 @@
 {
-  "name": "quest-dao-client",
+  "name": "@cryptoflops/quest-dao",
   "version": "1.0.2",
   "description": "Educational Protocol for Bitcoin Layer-2 Architects",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "repository": {
     "type": "git",
@@ -19,6 +22,5 @@
   "dependencies": {
     "@stacks/connect": "^8.2.6",
     "@stacks/transactions": "^7.4.0"
-  },
-  "private": true
+  }
 }
