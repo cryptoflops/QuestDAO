@@ -26,7 +26,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          cache: npm
+          # Only enable npm cache when a lockfile exists at repo root;
+          # otherwise setup-node hard-fails (monorepos without root lockfile).
+          cache: ${{ hashFiles('package-lock.json,npm-shrinkwrap.json,yarn.lock') != '' && 'npm' || '' }}
       - name: Install dependencies
         run: npm ci || npm install
       - name: Build
