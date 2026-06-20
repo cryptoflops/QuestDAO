@@ -7,11 +7,18 @@
     "type": "git",
     "url": "git+https://github.com/cryptoflops/QuestDAO.git"
   },
-  "keywords": ["stacks", "dao", "quest", "escrow", "voting"],
+  "keywords": [
+    "stacks",
+    "dao",
+    "quest",
+    "escrow",
+    "voting"
+  ],
   "author": "cryptoflops",
   "license": "ISC",
   "dependencies": {
     "@stacks/connect": "^8.2.6",
     "@stacks/transactions": "^7.4.0"
-  }
+  },
+  "private": true
 }
