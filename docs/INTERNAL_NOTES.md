@@ -271,3 +271,4 @@
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
+- Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
