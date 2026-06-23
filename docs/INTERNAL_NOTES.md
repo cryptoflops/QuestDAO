@@ -290,3 +290,4 @@
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
+- Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
