@@ -332,3 +332,4 @@
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
+- Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
