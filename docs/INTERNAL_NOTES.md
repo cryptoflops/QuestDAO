@@ -354,3 +354,4 @@
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
+- The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
