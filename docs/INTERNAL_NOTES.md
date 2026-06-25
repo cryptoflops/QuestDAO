@@ -395,3 +395,4 @@
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
+- Reviewed component tree performance after adding STX balance polling, no measurable regression.
