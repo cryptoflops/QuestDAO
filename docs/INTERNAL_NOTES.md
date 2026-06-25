@@ -392,3 +392,4 @@
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
+- Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
