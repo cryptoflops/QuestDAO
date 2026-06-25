@@ -417,3 +417,4 @@
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Reviewed component tree performance after adding STX balance polling, no measurable regression.
 - Reviewed component tree performance after adding STX balance polling, no measurable regression.
+- Investigated rendering jitter on mobile layout during wallet connection state changes.
