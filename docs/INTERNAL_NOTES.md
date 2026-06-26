@@ -464,3 +464,4 @@
 - Reviewed component tree performance after adding STX balance polling, no measurable regression.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
+- The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
