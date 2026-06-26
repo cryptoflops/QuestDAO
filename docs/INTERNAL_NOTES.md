@@ -468,3 +468,4 @@
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
 - Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
 - Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
+- Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
