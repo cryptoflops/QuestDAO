@@ -544,3 +544,4 @@
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
+- Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
