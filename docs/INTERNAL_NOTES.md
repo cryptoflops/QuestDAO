@@ -553,3 +553,4 @@
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
+- Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
