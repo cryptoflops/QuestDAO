@@ -660,3 +660,4 @@
 - Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Reviewed component tree performance after adding STX balance polling, no measurable regression.
+- Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
