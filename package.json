@@ -1,5 +1,5 @@
 {
-  "name": "@cryptoflops/quest-dao",
+  "name": "quest-dao-client",
   "version": "1.0.2",
   "description": "Educational Protocol for Bitcoin Layer-2 Architects",
   "publishConfig": {
