@@ -755,3 +755,4 @@
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
+- Investigated rendering jitter on mobile layout during wallet connection state changes.
