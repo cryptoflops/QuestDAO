@@ -845,3 +845,4 @@
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
+- Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
