@@ -903,3 +903,4 @@
 - Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
+- Investigated rendering jitter on mobile layout during wallet connection state changes.
