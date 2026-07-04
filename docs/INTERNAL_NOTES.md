@@ -983,3 +983,4 @@
 - Reviewed component tree performance after adding STX balance polling, no measurable regression.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
+- Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
