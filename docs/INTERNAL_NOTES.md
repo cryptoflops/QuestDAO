@@ -973,3 +973,4 @@
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
 - Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
+- Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
