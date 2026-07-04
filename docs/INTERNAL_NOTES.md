@@ -947,3 +947,4 @@
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
+- Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
