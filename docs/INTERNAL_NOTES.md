@@ -1004,3 +1004,4 @@
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
+- Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
