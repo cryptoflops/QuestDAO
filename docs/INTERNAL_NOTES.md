@@ -992,3 +992,4 @@
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
+- Investigated rendering jitter on mobile layout during wallet connection state changes.
