@@ -1033,3 +1033,4 @@
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
+- Investigated rendering jitter on mobile layout during wallet connection state changes.
