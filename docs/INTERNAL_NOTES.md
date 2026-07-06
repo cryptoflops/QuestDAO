@@ -1046,3 +1046,4 @@
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
+- The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
