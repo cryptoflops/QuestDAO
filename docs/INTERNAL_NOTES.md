@@ -1036,3 +1036,4 @@
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Reviewed component tree performance after adding STX balance polling, no measurable regression.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
+- Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
