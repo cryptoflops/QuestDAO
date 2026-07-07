@@ -1138,3 +1138,4 @@
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
+- Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
