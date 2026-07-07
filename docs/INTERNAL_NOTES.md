@@ -1113,3 +1113,4 @@
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Reviewed component tree performance after adding STX balance polling, no measurable regression.
+- The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
