@@ -1117,3 +1117,4 @@
 - Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
+- Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
