@@ -1101,3 +1101,4 @@
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
+- Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
