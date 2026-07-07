@@ -1130,3 +1130,4 @@
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
 - Tested the NFT minting flow on Stacks testnet. Metadata pinning to IPFS is reliable.
 - Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
+- Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
