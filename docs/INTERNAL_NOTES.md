@@ -1110,3 +1110,4 @@
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
+- Investigated rendering jitter on mobile layout during wallet connection state changes.
