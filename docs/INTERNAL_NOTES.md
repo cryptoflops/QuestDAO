@@ -1155,3 +1155,4 @@
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
 - Noticed the useStxBalance hook refetches too aggressively. Consider adding a 30s polling interval.
+- Contract calls via openContractCall work fine but the transaction broadcast can take 10-30 blocks.
