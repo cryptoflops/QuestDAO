@@ -1192,3 +1192,4 @@
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
+- Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
