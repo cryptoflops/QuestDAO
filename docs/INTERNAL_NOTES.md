@@ -1184,3 +1184,4 @@
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
+- Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
