@@ -42,7 +42,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                 <div className="px-8 md:px-16 pt-12 pb-8 border-b border-black/5 flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-3 mb-4">
-                            <span className="px-3 py-1 rounded-full bg-stacks-orange/10 text-stacks-orange font-mono text-[10px] uppercase tracking-widest font-bold">
+                            <span className="px-3 py-1 rounded-lg bg-primary/10 text-primary font-mono text-[10px] uppercase tracking-widest font-bold">
                                 Module {content.id}
                             </span>
                             <span className="text-black/40 font-sans text-[10px] uppercase tracking-widest font-bold">
@@ -66,7 +66,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                     <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">Objectives:</span>
                     {content.objectives.map((obj, i) => (
                         <div key={i} className="flex items-center gap-2">
-                            <div className="w-1 h-1 rounded-full bg-stacks-orange"></div>
+                            <div className="w-1 h-1 rounded-full bg-primary"></div>
                             <span className="text-xs font-sans font-bold text-black/60 capitalize">{obj}</span>
                         </div>
                     ))}
@@ -82,7 +82,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                                 h3: ({ ...props }) => <h3 className="text-xl font-bold mt-8 mb-4 text-black" {...props} />,
                                 p: ({ ...props }) => <p className="text-black/70 mb-6 leading-relaxed" {...props} />,
                                 code: ({ ...props }) => (
-                                    <code className="bg-black/5 text-[#FF4B12] px-1.5 py-0.5 rounded font-mono text-sm" {...props} />
+                                    <code className="bg-black/5 text-primary px-1.5 py-0.5 rounded font-mono text-sm" {...props} />
                                 ),
                                 pre: ({ ...props }) => (
                                     <pre className="bg-black text-white p-6 rounded-2xl font-mono text-sm overflow-x-auto my-8 shadow-xl" {...props} />
@@ -97,7 +97,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                 {/* Knowledge Check Section */}
                 <div className="px-8 md:px-16 py-8 bg-black/[0.02] border-t border-black/5">
                     <h4 className="text-[10px] font-bold uppercase tracking-widest text-black/40 mb-4 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF4B12]"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
                         {content.type === 'identity' ? 'Identity Verification' : 'Knowledge Check'}
                     </h4>
                     <p className="text-sm font-sans font-bold text-black mb-4">
@@ -110,7 +110,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                         value={proof}
                         onChange={(e) => setProof(e.target.value)}
                         placeholder={content.type === 'identity' ? "e.g. architect.btc" : "Enter the secret proof..."}
-                        className="w-full bg-white border border-black/10 rounded-2xl px-6 py-4 font-mono text-sm focus:outline-none focus:border-[#FF4B12] transition-colors shadow-inner"
+                        className="w-full bg-white border border-black/10 rounded-2xl px-6 py-4 font-mono text-sm focus:outline-none focus:border-primary transition-colors shadow-inner"
                     />
                 </div>
 
@@ -121,8 +121,8 @@ const QuestModal: React.FC<QuestModalProps> = ({
                             Proof of Logic Required:
                         </p>
                         <div className="flex items-center gap-3 text-center md:text-left">
-                            <div className={`w-1.5 h-1.5 rounded-full ${canComplete ? 'bg-green-500' : 'bg-[#FF4B12]'}`}></div>
-                            <span className={`text-[10px] font-bold uppercase tracking-[0.1em] ${canComplete ? 'text-black/60' : 'text-[#FF4B12]'}`}>
+                            <div className={`w-1.5 h-1.5 rounded-full ${canComplete ? 'bg-green-500' : 'bg-primary'}`}></div>
+                            <span className={`text-[10px] font-bold uppercase tracking-[0.1em] ${canComplete ? 'text-black/60' : 'text-primary'}`}>
                                 {content.requirement}: {content.requirementDescription}
                             </span>
                         </div>
@@ -135,7 +135,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                         `}
                     >
                         <span className="relative z-10">{isProcessing ? 'Verifying...' : content.type === 'identity' ? 'Verify Identity & Claim XP' : 'Mint Badge (on-chain proof)'}</span>
-                        {(canComplete && proof.trim()) && <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>}
+                        {(canComplete && proof.trim()) && <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300"></div>}
                     </button>
                 </div>
             </div>

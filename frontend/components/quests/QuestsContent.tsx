@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import {
     fetchCallReadOnlyFunction,
     cvToJSON,
@@ -186,7 +187,7 @@ export default function QuestsContent() {
         const sc = StacksConnect as any;
 
         if (!userSession.isUserSignedIn()) {
-            alert("Please connect your wallet first.");
+            console.error("Wallet not connected. Please connect your wallet first.");
             setIsProcessing(false);
             return;
         }
@@ -285,11 +286,11 @@ export default function QuestsContent() {
         <>
             {/* Header */}
             <div className="pt-32 pb-24 relative overflow-hidden">
-                <div className="absolute inset-0 bg-stacks-orange/5 mix-blend-multiply"></div>
+                <div className="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
                 <Container className="relative z-10">
-                    <h1 className="text-7xl md:text-[10rem] font-serif text-black mb-10 tracking-tighter leading-[0.8] italic">
+                    <h1 className="text-balance text-7xl md:text-[clamp(4rem,10vw,10rem)] font-serif text-black mb-10 tracking-tighter leading-[0.8] italic">
                         The <br />
-                        <span className="text-[#FF4B12] not-italic">Curriculum.</span>
+                        <span className="text-primary not-italic">Curriculum.</span>
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
                         <p className="md:col-span-8 text-2xl md:text-3xl text-stacks-black/80 font-sans font-semibold leading-tight max-w-2xl tracking-tight">
@@ -304,12 +305,35 @@ export default function QuestsContent() {
             <div className="py-20 relative px-6 md:px-0">
                 <QuestGrid>
                     {isLoading ? (
-                        <div className="col-span-12 p-40 text-center text-stacks-black/40 font-sans font-bold uppercase tracking-[0.3em] animate-pulse">
-                            Loading Academy Data...
+                        <div className="col-span-12 space-y-12 py-10">
+                            <div className="text-center text-stacks-black/40 font-sans font-bold uppercase tracking-[0.3em] animate-pulse mb-16">
+                                Loading Academy Data...
+                            </div>
+                            <div className="grid grid-cols-12 gap-8">
+                                {[1, 2, 3].map((i) => (
+                                    <div key={i} className={`col-span-12 ${getGridSpan(i - 1)}`}>
+                                        <div className="bg-white/50 rounded-2xl p-10 h-80 animate-pulse border border-black/5">
+                                            <div className="flex items-center gap-3 mb-8">
+                                                <div className="w-16 h-5 bg-stacks-grey rounded-lg"></div>
+                                                <div className="w-12 h-5 bg-stacks-grey rounded-lg"></div>
+                                            </div>
+                                            <div className="w-3/4 h-10 bg-stacks-grey rounded mb-6"></div>
+                                            <div className="w-full h-4 bg-stacks-grey rounded mb-3"></div>
+                                            <div className="w-2/3 h-4 bg-stacks-grey rounded mb-10"></div>
+                                            <div className="w-32 h-10 bg-stacks-grey rounded-full mt-auto"></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     ) : quests.length === 0 ? (
-                        <div className="col-span-12 p-40 text-center text-stacks-black/40 font-sans font-bold uppercase tracking-[0.3em]">
-                            End of Records.
+                        <div className="col-span-12 p-40 text-center space-y-6">
+                            <p className="text-stacks-black/40 font-sans font-bold uppercase tracking-[0.3em]">
+                                End of Records.
+                            </p>
+                            <Link href="/" className="inline-block text-primary font-sans text-xs font-bold uppercase tracking-[0.2em] hover:underline">
+                                Return to Terminal
+                            </Link>
                         </div>
                     ) : (
                         quests.map((quest, index) => (
@@ -329,7 +353,7 @@ export default function QuestsContent() {
                 <div className="py-24 border-t-[0.5px] border-black/10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-black/[0.02]" />
                     <Container className="relative z-10">
-                        <div className="bg-white/70 backdrop-blur-2xl p-12 rounded-[2.5rem] border-[0.5px] border-black/10 shadow-2xl shadow-black/5">
+                        <div className="bg-white/90 backdrop-blur-2xl p-12 rounded-2xl border border-black/5 shadow-sm">
                             <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-12">
                                 <div>
                                     <h4 className="font-serif text-4xl text-black italic tracking-tighter">The Architect's Tools</h4>
@@ -369,7 +393,7 @@ export default function QuestsContent() {
                                     className="group relative px-8 py-4 bg-black text-white rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.2em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
                                 >
                                     <span className="relative z-10">1. Authorize Registry V6</span>
-                                    <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                    <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300"></div>
                                 </button>
 
                                 <button
@@ -410,7 +434,7 @@ export default function QuestsContent() {
                                     className="group relative px-8 py-4 bg-black text-white rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.2em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
                                 >
                                     <span className="relative z-10">2. Seed Next Curriculum Quest ({quests.length + 1})</span>
-                                    <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                    <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300"></div>
                                 </button>
                             </div>
                         </div>

@@ -13,6 +13,7 @@ interface DelegateModalProps {
 
 const DelegateModal: React.FC<DelegateModalProps> = ({ isOpen, onClose }) => {
     const [delegatee, setDelegatee] = useState('');
+    const [error, setError] = useState('');
 
     if (!isOpen) return null;
 
@@ -24,9 +25,10 @@ const DelegateModal: React.FC<DelegateModalProps> = ({ isOpen, onClose }) => {
         // Basic validation
         const prefix = IS_MAINNET ? 'SP' : 'ST';
         if (!delegatee.startsWith(prefix)) {
-            alert(`Please enter a valid Stacks ${IS_MAINNET ? 'Mainnet (SP)' : 'Testnet (ST)'} address`);
+            setError(`Please enter a valid Stacks ${IS_MAINNET ? 'Mainnet (SP)' : 'Testnet (ST)'} address`);
             return;
         }
+        setError('');
 
         const options = {
             contractAddress: CONTRACT_ADDRESS,
@@ -76,6 +78,9 @@ const DelegateModal: React.FC<DelegateModalProps> = ({ isOpen, onClose }) => {
                             className="w-full bg-muted border border-border p-5 text-foreground focus:border-primary outline-none rounded-2xl font-mono text-[13px] transition-all"
                             placeholder="ST..."
                         />
+                        {error && (
+                            <p className="text-xs font-sans font-bold text-primary">{error}</p>
+                        )}
                     </div>
 
                     <Button variant="secondary" size="lg" fullWidth onClick={handleSubmit}>

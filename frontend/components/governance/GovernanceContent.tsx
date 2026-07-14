@@ -105,11 +105,11 @@ export default function GovernanceContent() {
         <>
             {/* Header */}
             <div className="pt-32 pb-24 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#FF4B12]/5 mix-blend-multiply"></div>
+                <div className="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
                 <Container className="relative z-10">
-                    <h1 className="text-7xl md:text-[10rem] font-serif text-black mb-10 tracking-tighter leading-[0.8] italic">
+                    <h1 className="text-balance text-7xl md:text-[clamp(4rem,10vw,10rem)] font-serif text-black mb-10 tracking-tighter leading-[0.8] italic">
                         The <br />
-                        <span className="text-[#FF4B12] not-italic">Council.</span>
+                        <span className="text-primary not-italic">Council.</span>
                     </h1>
                     <p className="text-2xl md:text-3xl text-black/80 font-sans font-semibold mb-16 leading-tight max-w-2xl tracking-tight">
                         Governance is restricted to certified members. <br />
@@ -162,7 +162,7 @@ export default function GovernanceContent() {
                         </span>
                     </div>
 
-                    <div className="bg-white/70 backdrop-blur-2xl border-[0.5px] border-black/10 rounded-3xl p-6 md:p-12 shadow-2xl shadow-black/5">
+                    <div className="bg-white/90 backdrop-blur-2xl border border-black/5 rounded-2xl p-6 md:p-12 shadow-sm">
                         <div className="hidden md:grid grid-cols-12 gap-4 pb-8 border-b border-stacks-black/5 text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-stacks-black/30">
                             <div className="col-span-2">Status</div>
                             <div className="col-span-6">Proposal</div>

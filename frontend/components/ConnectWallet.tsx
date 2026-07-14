@@ -61,7 +61,7 @@ export default function ConnectWallet() {
                 </div>
                 <button
                     onClick={handleDisconnect}
-                    className="w-10 h-10 rounded-full bg-stacks-grey border border-stacks-black/5 flex items-center justify-center hover:bg-stacks-orange hover:text-white transition-all duration-300"
+                    className="w-10 h-10 rounded-full bg-stacks-grey border border-stacks-black/5 flex items-center justify-center hover:bg-primary hover:text-white active:scale-[0.98] transition-all duration-300"
                     title="Sign Out"
                 >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

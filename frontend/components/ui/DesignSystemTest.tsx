@@ -21,7 +21,7 @@ const DesignSystemTest = () => {
                     <h3 className="text-3xl font-serif text-muted-foreground">
                         QuestDAO Typography Standard
                     </h3>
-                    <p className="text-xl md:text-2xl leading-relaxed text-slate max-w-2xl">
+                    <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground max-w-2xl">
                         This is an example of the body text. It uses the Sans-Serif font (Manrope or Inter) to contrast with the rich Serif headings.
                         The goal is maximum readability with a premium "printed page" feel.
                     </p>
@@ -37,42 +37,42 @@ const DesignSystemTest = () => {
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
 
                     <div className="space-y-3">
-                        <div className="h-32 w-full rounded-sm bg-charcoal border border-border"></div>
+                        <div className="h-32 w-full rounded-lg bg-stacks-black border border-border"></div>
                         <div className="space-y-1">
-                            <p className="font-medium text-bone">Charcoal</p>
-                            <p className="text-xs text-muted-foreground">bg-charcoal</p>
+                            <p className="font-medium text-foreground">Black</p>
+                            <p className="text-xs text-muted-foreground">bg-stacks-black</p>
                         </div>
                     </div>
 
                     <div className="space-y-3">
-                        <div className="h-32 w-full rounded-sm bg-obsidian border border-border"></div>
+                        <div className="h-32 w-full rounded-lg bg-stacks-dark border border-border"></div>
                         <div className="space-y-1">
-                            <p className="font-medium text-bone">Obsidian</p>
-                            <p className="text-xs text-muted-foreground">bg-obsidian</p>
+                            <p className="font-medium text-foreground">Dark</p>
+                            <p className="text-xs text-muted-foreground">bg-stacks-dark</p>
                         </div>
                     </div>
 
                     <div className="space-y-3">
-                        <div className="h-32 w-full rounded-sm bg-bone border border-border"></div>
+                        <div className="h-32 w-full rounded-lg bg-stacks-grey border border-border"></div>
                         <div className="space-y-1">
-                            <p className="font-medium text-charcoal">Bone</p>
-                            <p className="text-xs text-muted-foreground">bg-bone</p>
+                            <p className="font-medium text-foreground">Grey</p>
+                            <p className="text-xs text-muted-foreground">bg-stacks-grey</p>
                         </div>
                     </div>
 
                     <div className="space-y-3">
-                        <div className="h-32 w-full rounded-sm bg-gold border border-0"></div>
+                        <div className="h-32 w-full rounded-lg bg-primary border border-0"></div>
                         <div className="space-y-1">
-                            <p className="font-medium text-gold">Burnished Gold</p>
-                            <p className="text-xs text-muted-foreground">bg-gold</p>
+                            <p className="font-medium text-primary">Orange</p>
+                            <p className="text-xs text-muted-foreground">bg-primary</p>
                         </div>
                     </div>
 
                     <div className="space-y-3">
-                        <div className="h-32 w-full rounded-sm bg-forest border border-0"></div>
+                        <div className="h-32 w-full rounded-lg bg-background border border-border"></div>
                         <div className="space-y-1">
-                            <p className="font-medium text-forest">Deep Forest</p>
-                            <p className="text-xs text-muted-foreground">bg-forest</p>
+                            <p className="font-medium text-foreground">Background</p>
+                            <p className="text-xs text-muted-foreground">bg-background</p>
                         </div>
                     </div>
 
@@ -90,12 +90,12 @@ const DesignSystemTest = () => {
                     {/* Card */}
                     <div className="space-y-4">
                         <h4 className="text-lg font-mono text-muted-foreground">Card / Surface</h4>
-                        <div className="p-8 bg-card border border-border rounded-sm space-y-6">
+                        <div className="p-8 bg-white border border-border rounded-2xl space-y-6">
                             <div className="flex justify-between items-start">
-                                <div className="w-12 h-12 bg-gold/10 flex items-center justify-center rounded-sm">
-                                    <div className="w-6 h-6 bg-gold mask-icon"></div>
+                                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center rounded-lg">
+                                    <div className="w-6 h-6 bg-primary mask-icon"></div>
                                 </div>
-                                <span className="text-xs font-mono border border-gold/30 text-gold px-2 py-1 rounded-full">MINTED</span>
+                                <span className="text-xs font-mono border border-primary/30 text-primary px-2 py-1 rounded-lg">MINTED</span>
                             </div>
                             <div>
                                 <h3 className="text-2xl font-serif text-card-foreground mb-2">Build a Stacks Smart Contract</h3>
@@ -116,7 +116,7 @@ const DesignSystemTest = () => {
                                 <input
                                     type="email"
                                     placeholder="member@questdao.org"
-                                    className="w-full bg-input border-b border-white/20 px-0 py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold transition-colors"
+                                    className="w-full bg-input border-b border-black/20 px-0 py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary transition-colors"
                                 />
                             </div>
 

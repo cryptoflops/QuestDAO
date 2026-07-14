@@ -115,7 +115,7 @@ export default function WebGLBackground() {
     return (
         <div
             ref={containerRef}
-            className="fixed inset-0 -z-50 pointer-events-none transition-opacity duration-1000 bg-[#FFFFFF]"
+            className="fixed inset-0 -z-50 pointer-events-none transition-opacity duration-1000 bg-[#FAFAF9]"
             aria-hidden="true"
         />
     );

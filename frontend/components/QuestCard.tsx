@@ -39,9 +39,10 @@ const QuestCard: React.FC<QuestCardProps> = ({
     return (
         <div className={`
             group relative p-10 h-full flex flex-col justify-between
-            border-[0.5px] border-black/10 bg-white/70 backdrop-blur-2xl
-            rounded-[2rem] transition-all duration-700 ease-in-out
-            hover:bg-white hover:shadow-[0_20px_50px_rgba(255,100,0,0.15)] hover:-translate-y-2
+            border border-black/5 bg-white/90 backdrop-blur-2xl
+            rounded-2xl transition-all duration-300 ease-out
+            hover:bg-white hover:shadow-sm hover:-translate-y-1
+            active:scale-[0.98]
             ${className}
             ${isLocked ? 'opacity-40 grayscale pointer-events-none' : ''}
         `}>
@@ -49,10 +50,10 @@ const QuestCard: React.FC<QuestCardProps> = ({
             {/* Editorial Header */}
             <div>
                 <div className="flex items-center gap-3 mb-8">
-                    <span className="px-3 py-1 rounded-full bg-[#F5F5F7] font-sans text-[9px] font-bold uppercase tracking-[0.2em] text-black/50">
+                    <span className="px-3 py-1 rounded-lg bg-stacks-grey font-sans text-[9px] font-bold uppercase tracking-[0.2em] text-black/50">
                         {difficulty}
                     </span>
-                    <span className="font-sans text-[9px] font-bold uppercase tracking-[0.2em] text-[#FF4B12]">
+                    <span className="font-sans text-[9px] font-bold uppercase tracking-[0.2em] text-primary">
                         {reward} XP
                     </span>
                 </div>
@@ -74,7 +75,7 @@ const QuestCard: React.FC<QuestCardProps> = ({
                         className="group relative px-6 py-3 bg-black text-white rounded-full font-sans font-bold text-xs uppercase tracking-[0.2em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
                     >
                         <span className="relative z-10">Begin Module</span>
-                        <div className="absolute inset-0 bg-[#FF4B12] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                        <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300"></div>
                     </button>
                 )}
 

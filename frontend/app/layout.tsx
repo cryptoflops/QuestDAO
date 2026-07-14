@@ -28,7 +28,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
-      <body className="antialiased min-h-screen pt-16 bg-transparent text-foreground selection:bg-stacks-orange selection:text-white">
+      <body className="antialiased min-h-dvh pt-16 bg-background text-foreground selection:bg-primary selection:text-white">
         <Providers>
           {children}
         </Providers>

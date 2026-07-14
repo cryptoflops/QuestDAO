@@ -77,8 +77,8 @@ const ProposalRow: React.FC<ProposalRowProps> = ({
             {/* ID & Status */}
             <div className="md:col-span-2 flex items-center gap-4">
                 <span className="font-sans font-bold text-[10px] text-black/20 tracking-tighter">#{id.padStart(3, '0')}</span>
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F5F7] border-[0.5px] border-black/5">
-                    <span className={`w-1.5 h-1.5 rounded-full ${status === 'active' ? 'bg-[#FF4B12] animate-pulse' : status === 'passed' ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-stacks-grey border-[0.5px] border-black/5">
+                    <span className={`w-1.5 h-1.5 rounded-full ${status === 'active' ? 'bg-primary animate-pulse' : status === 'passed' ? 'bg-green-500' : 'bg-red-500'}`}></span>
                     <span className="text-[9px] uppercase tracking-[0.2em] text-black/60 font-bold font-sans">
                         {statusLabels[status]}
                     </span>
@@ -114,27 +114,27 @@ const ProposalRow: React.FC<ProposalRowProps> = ({
                         <div className="grid grid-cols-2 gap-2">
                             <button
                                 onClick={() => handleVote("yes")}
-                                className="group relative px-4 py-2 bg-secondary text-white rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.2em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-md"
+                                className="group relative px-4 py-2 bg-secondary text-white rounded-lg font-sans font-bold text-[10px] uppercase tracking-[0.2em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-md"
                             >
                                 <span className="relative z-10">Yes</span>
-                                <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300"></div>
                             </button>
                             <button
                                 onClick={() => handleVote("no")}
-                                className="px-4 py-2 bg-muted border border-border text-foreground rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all shadow-sm"
+                                className="px-4 py-2 bg-muted border border-border text-foreground rounded-lg font-sans font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-white active:scale-[0.98] transition-all shadow-sm"
                             >
                                 No
                             </button>
                         </div>
                         <button
                             onClick={() => handleVote("abstain")}
-                            className="px-4 py-2 bg-transparent text-foreground/40 rounded-full font-sans font-bold text-[9px] uppercase tracking-[0.2em] hover:text-primary transition-colors"
+                            className="px-4 py-2 bg-transparent text-foreground/40 rounded-lg font-sans font-bold text-[9px] uppercase tracking-[0.2em] hover:text-primary active:scale-[0.98] transition-colors"
                         >
                             Abstain
                         </button>
                     </div>
                 ) : (
-                    <button className="px-4 py-2 bg-white/30 backdrop-blur-sm border border-black/5 text-black/40 rounded-full font-sans font-bold text-[9px] uppercase tracking-[0.2em] cursor-not-allowed">
+                    <button className="px-4 py-2 bg-white/30 backdrop-blur-sm border border-black/5 text-black/40 rounded-lg font-sans font-bold text-[9px] uppercase tracking-[0.2em] cursor-not-allowed">
                         View Audit
                     </button>
                 )}

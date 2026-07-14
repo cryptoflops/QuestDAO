@@ -13,7 +13,7 @@ const tabs = [
 export default function MobileNav() {
   const pathname = usePathname();
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-2xl border-t border-black/5 safe-area-bottom">
+            <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-2xl border-t border-black/5 safe-area-bottom">
       <div className="flex items-center justify-around h-16">
         {tabs.map((tab) => {
           const active = pathname === tab.href;
@@ -22,7 +22,7 @@ export default function MobileNav() {
               key={tab.href}
               href={tab.href}
               className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg transition-colors ${
-                active ? "text-[#FF4B12]" : "text-zinc-400 hover:text-zinc-600"
+                active ? "text-primary" : "text-zinc-400 hover:text-zinc-600"
               }`}
             >
               <tab.icon size={20} strokeWidth={active ? 2.5 : 1.5} />

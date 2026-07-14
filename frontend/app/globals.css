@@ -1,42 +1,56 @@
 @import "tailwindcss";
 
 @theme {
-  /* Stacks Dynamic Palette - Direct Hex for Reliability */
-  --color-stacks-orange: #FF4B12;
-  --color-stacks-white: #FFFFFF;
-  --color-stacks-black: #000000;
-  --color-stacks-grey: #F5F5F7;
-  --color-stacks-dark: #111111;
+  /* Stacks Dynamic Palette — desaturated orange, off-white warmth */
+  --color-stacks-orange: #F04A10;
+  --color-stacks-white: #FAFAF9;
+  --color-stacks-black: #0A0A0A;
+  --color-stacks-grey: #F5F5F5;
+  --color-stacks-dark: #171717;
 
   /* Semantic Mappings */
-  --color-primary: #FF4B12;
+  --color-primary: #F04A10;
   --color-primary-foreground: #FFFFFF;
-  --color-secondary: #000000;
+  --color-secondary: #0A0A0A;
   --color-secondary-foreground: #FFFFFF;
 
-  --color-background: #FFFFFF;
-  --color-foreground: #000000;
+  --color-background: #FAFAF9;
+  --color-foreground: #0A0A0A;
 
   --color-card: #FFFFFF;
-  --color-card-foreground: #000000;
+  --color-card-foreground: #0A0A0A;
 
-  --color-muted: #F5F5F7;
-  --color-muted-foreground: #666666;
+  --color-muted: #F5F5F5;
+  --color-muted-foreground: #6B6B6B;
 
-  --color-accent: #FF4B12;
+  --color-accent: #F04A10;
   --color-accent-foreground: #FFFFFF;
 
-  --color-border: #E5E5E7;
-  --color-input: #E5E5E7;
-  --color-ring: #FF4B12;
+  --color-border: #E8E8E6;
+  --color-input: #E8E8E6;
+  --color-ring: #F04A10;
 
   --border-width-thin: 0.5px;
 }
 
+/* ─── Z-Index Scale ───
+   -z-50 : WebGL background
+   z-10  : content above background
+   z-20  : decorative strips
+   z-40  : below nav
+   z-50  : navbar / mobile nav
+   z-[60] : modals (create proposal, delegate)
+   z-[100]: quest detail modal
+*/
+
 :root {
-  --background: #FFFFFF;
-  --foreground: #000000;
-  --stacks-orange: #FF4B12;
+  --background: #FAFAF9;
+  --foreground: #0A0A0A;
+  --stacks-orange: #F04A10;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -44,6 +58,20 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
+}
+
+/* ─── Noise / Grain Overlay ─── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  opacity: 0.015;
 }
 
 h1,
@@ -66,15 +94,20 @@ h6 {
 
 /* ─── Focus Visible ─── */
 *:focus-visible {
-  outline: 2px solid #FF4B12;
+  outline: 2px solid #F04A10;
   outline-offset: 2px;
   border-radius: 8px;
 }
 
-/* ─── Glass Card Contrast ─── */
-.glass-card-enhanced {
-  background: rgba(255, 255, 255, 0.85);
+/* ─── Card Surface — more contrast against off-white bg ─── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* ─── Text Balance for Display Headings ─── */
+.text-balance {
+  text-wrap: balance;
 }
