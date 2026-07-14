@@ -67,7 +67,9 @@ const DelegateModal: React.FC<DelegateModalProps> = ({ isOpen, onClose }) => {
                 <div className="space-y-8">
                     <div className="space-y-3">
                         <label className="block text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-stacks-black/30">Delegate Principal</label>
+                        <label htmlFor="delegate-address" className="sr-only">Delegate address</label>
                         <input
+                            id="delegate-address"
                             type="text"
                             value={delegatee}
                             onChange={(e) => setDelegatee(e.target.value)}

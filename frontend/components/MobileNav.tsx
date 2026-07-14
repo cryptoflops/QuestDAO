@@ -1,38 +1,36 @@
-'use client';
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Home, BookOpen, Trophy, Scale } from "lucide-react";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+const tabs = [
+  { href: "/", label: "Home", icon: Home },
+  { href: "/quests", label: "Learn", icon: BookOpen },
+  { href: "/leaderboard", label: "Ranks", icon: Trophy },
+  { href: "/governance", label: "Council", icon: Scale },
+];
 
 export default function MobileNav() {
-    const pathname = usePathname();
-
-    const isActive = (path: string) => pathname === path;
-
-    return (
-        <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden pb-safe">
-            <div className="bg-charcoal/90 backdrop-blur-xl border-t border-bone/10 px-6 py-4 flex justify-between items-center">
-
-                <Link href="/" className={`flex flex-col items-center gap-1 ${isActive('/') ? 'text-gold' : 'text-slate'}`}>
-                    <span className="text-xl">⌂</span>
-                    <span className="text-[9px] uppercase tracking-widest font-mono">Home</span>
-                </Link>
-
-                <Link href="/quests" className={`flex flex-col items-center gap-1 ${isActive('/quests') ? 'text-gold' : 'text-slate'}`}>
-                    <span className="text-xl">❖</span>
-                    <span className="text-[9px] uppercase tracking-widest font-mono">Quests</span>
-                </Link>
-
-                <Link href="/leaderboard" className={`flex flex-col items-center gap-1 ${isActive('/leaderboard') ? 'text-gold' : 'text-slate'}`}>
-                    <span className="text-xl">Ξ</span>
-                    <span className="text-[9px] uppercase tracking-widest font-mono">Top</span>
-                </Link>
-
-                <Link href="/governance" className={`flex flex-col items-center gap-1 ${isActive('/governance') ? 'text-gold' : 'text-slate'}`}>
-                    <span className="text-xl">⚖</span>
-                    <span className="text-[9px] uppercase tracking-widest font-mono">Vote</span>
-                </Link>
-
-            </div>
-        </div>
-    );
+  const pathname = usePathname();
+  return (
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-2xl border-t border-black/5 safe-area-bottom">
+      <div className="flex items-center justify-around h-16">
+        {tabs.map((tab) => {
+          const active = pathname === tab.href;
+          return (
+            <Link
+              key={tab.href}
+              href={tab.href}
+              className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg transition-colors ${
+                active ? "text-[#FF4B12]" : "text-zinc-400 hover:text-zinc-600"
+              }`}
+            >
+              <tab.icon size={20} strokeWidth={active ? 2.5 : 1.5} />
+              <span className="text-[10px] font-medium">{tab.label}</span>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
+  );
 }

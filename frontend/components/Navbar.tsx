@@ -9,9 +9,9 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group">
                     <div className="w-10 h-10 rounded-[10px] flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-500 shadow-lg shadow-orange-500/20 overflow-hidden">
-                        <Image src="/qd-2.png" alt="QuestDAO Icon" width={40} height={40} className="w-full h-full object-cover" priority />
+                        <Image src="/qd-2.png" alt="QuestDAO" width={40} height={40} className="w-full h-full object-cover" priority />
                     </div>
-                    <Image src="/qd-1.png" alt="QuestDAO" width={120} height={28} className="object-contain" priority />
+                    <Image src="/qd-1.png" alt="" width={120} height={28} className="object-contain" priority />
                 </Link>
 
                 {/* Links */}

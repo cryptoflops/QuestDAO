@@ -103,7 +103,9 @@ const QuestModal: React.FC<QuestModalProps> = ({
                     <p className="text-sm font-sans font-bold text-black mb-4">
                         {content.knowledgeCheck}
                     </p>
+                    <label htmlFor="knowledge-check" className="sr-only">Your answer</label>
                     <input
+                        id="knowledge-check"
                         type="text"
                         value={proof}
                         onChange={(e) => setProof(e.target.value)}

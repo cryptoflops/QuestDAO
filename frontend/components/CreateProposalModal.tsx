@@ -60,7 +60,9 @@ const CreateProposalModal: React.FC<CreateProposalModalProps> = ({ isOpen, onClo
                 <div className="space-y-8">
                     <div className="space-y-3">
                         <label className="block text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-stacks-black/30">Proposal Title</label>
+                        <label htmlFor="proposal-title" className="sr-only">Proposal title</label>
                         <input
+                            id="proposal-title"
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
@@ -71,7 +73,9 @@ const CreateProposalModal: React.FC<CreateProposalModalProps> = ({ isOpen, onClo
 
                     <div className="space-y-3">
                         <label className="block text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-stacks-black/30">Duration (Blocks)</label>
+                        <label htmlFor="proposal-duration" className="sr-only">Duration (blocks)</label>
                         <input
+                            id="proposal-duration"
                             type="number"
                             value={duration}
                             onChange={(e) => setDuration(e.target.value)}

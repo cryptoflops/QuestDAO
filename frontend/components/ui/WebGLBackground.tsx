@@ -1,13 +1,18 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 export default function WebGLBackground() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [reduceMotion, setReduceMotion] = useState(false);
 
     useEffect(() => {
-        if (!containerRef.current) return;
+        setReduceMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    }, []);
+
+    useEffect(() => {
+        if (!containerRef.current || reduceMotion) return;
 
         const container = containerRef.current;
         const scene = new THREE.Scene();
@@ -105,7 +110,7 @@ export default function WebGLBackground() {
             geometry.dispose();
             material.dispose();
         };
-    }, []);
+    }, [reduceMotion]);
 
     return (
         <div

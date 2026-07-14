@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Lock } from 'lucide-react';
 import Button from './ui/Button';
 import * as StacksConnect from '@/lib/stacks';
 import { userSession } from '@/lib/stacks-session';
@@ -78,8 +79,8 @@ const QuestCard: React.FC<QuestCardProps> = ({
                 )}
 
                 {isLocked && (
-                    <div className="flex items-center text-stacks-black/30 font-sans text-[10px] font-bold uppercase tracking-widest gap-2">
-                        <span>🔒</span> Restricted
+                    <div className="flex items-center text-stacks-black/30 font-sans text-[10px] font-bold uppercase tracking-widest gap-2" aria-label="Locked quest">
+                        <Lock size={14} className="text-zinc-400" /> Restricted
                     </div>
                 )}
 
