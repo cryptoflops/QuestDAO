@@ -1253,3 +1253,4 @@
 - The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
 - Reviewed Clarity contract read-only functions. The response parsing handles optional values correctly.
 - Investigated rendering jitter on mobile layout during wallet connection state changes.
+- The Hiro wallet extension detection is synchronous which is nice compared to injected EVM providers.
