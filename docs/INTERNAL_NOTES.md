@@ -1248,3 +1248,4 @@
 - The wallet connection flow via @stacks/connect works well on desktop but needs mobile fallback.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
 - Tested STX transfer flow on testnet. Post-conditions correctly prevent over-spending.
+- Checked backward compatibility with older Stacks API responses. v2/info endpoint is stable.
