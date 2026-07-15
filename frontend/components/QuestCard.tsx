@@ -70,17 +70,17 @@ const QuestCard: React.FC<QuestCardProps> = ({
             {/* Footer / Status Action */}
             <div className="flex items-center justify-between pt-6 border-t-[0.5px] border-black/5">
                 {status === 'available' && (
-                    <button
+                    <Button
+                        variant="signature"
+                        size="sm"
                         onClick={handleAction}
-                        className="group relative px-6 py-3 bg-black text-white rounded-full font-sans font-bold text-xs uppercase tracking-[0.2em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg"
                     >
-                        <span className="relative z-10">Begin Module</span>
-                        <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-300"></div>
-                    </button>
+                        Begin Module
+                    </Button>
                 )}
 
                 {isLocked && (
-                    <div className="flex items-center text-stacks-black/30 font-sans text-[10px] font-bold uppercase tracking-widest gap-2" aria-label="Locked quest">
+                    <div className="flex items-center text-stacks-black/60 font-sans text-[10px] font-bold uppercase tracking-widest gap-2" aria-label="Locked quest">
                         <Lock size={14} className="text-zinc-400" /> Restricted
                     </div>
                 )}

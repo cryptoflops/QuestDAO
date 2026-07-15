@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { X } from 'lucide-react';
 import Button from './ui/Button';
 import * as StacksConnect from '@/lib/stacks';
 import { standardPrincipalCV } from '@/lib/stacks';
@@ -14,6 +15,23 @@ interface DelegateModalProps {
 const DelegateModal: React.FC<DelegateModalProps> = ({ isOpen, onClose }) => {
     const [delegatee, setDelegatee] = useState('');
     const [error, setError] = useState('');
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (isOpen && modalRef.current) {
+            modalRef.current.focus();
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && isOpen) {
+                onClose();
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, onClose]);
 
     if (!isOpen) return null;
 
@@ -53,22 +71,29 @@ const DelegateModal: React.FC<DelegateModalProps> = ({ isOpen, onClose }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-stacks-black/20 backdrop-blur-xl transition-all duration-500">
-            <div className="bg-white/90 border border-stacks-black/5 w-full max-w-xl p-12 rounded-[2.5rem] relative shadow-2xl shadow-stacks-orange/10">
-                <button onClick={onClose} className="absolute top-8 right-8 text-foreground/20 hover:text-primary transition-colors">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+        <div
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-stacks-black/20 backdrop-blur-xl transition-all duration-500"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delegate-modal-title"
+        >
+            <div
+                ref={modalRef}
+                tabIndex={-1}
+                className="bg-white/90 border border-stacks-black/5 w-full max-w-xl p-12 rounded-[2.5rem] relative shadow-2xl shadow-stacks-orange/10"
+            >
+                <button onClick={onClose} className="absolute top-8 right-8 p-2 hover:bg-black/5 rounded-full transition-colors" aria-label="Close">
+                    <X size={20} />
                 </button>
 
-                <h2 className="text-4xl font-serif text-foreground mb-6 tracking-tighter">Delegate <br /><span className="text-primary">Voting Power</span></h2>
+                <h2 id="delegate-modal-title" className="text-4xl font-serif text-foreground mb-6 tracking-tighter">Delegate <br /><span className="text-primary">Voting Power</span></h2>
                 <p className="text-[14px] text-stacks-black/60 mb-10 font-sans font-medium leading-relaxed">
                     Assign your voting weight to another trusted principal. You retain your Soulbound Badge, but they will cast votes on your behalf across the protocol.
                 </p>
 
                 <div className="space-y-8">
                     <div className="space-y-3">
-                        <label className="block text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-stacks-black/30">Delegate Principal</label>
+                        <label className="block text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-stacks-black/60">Delegate Principal</label>
                         <label htmlFor="delegate-address" className="sr-only">Delegate address</label>
                         <input
                             id="delegate-address"

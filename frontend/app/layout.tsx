@@ -29,6 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
       <body className="antialiased min-h-dvh pt-16 bg-background text-foreground selection:bg-primary selection:text-white">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-20 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none">
+          Skip to content
+        </a>
         <Providers>
           {children}
         </Providers>

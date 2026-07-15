@@ -21,7 +21,7 @@ export default function MobileNav() {
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg transition-colors ${
+              className={`flex flex-col items-center gap-0.5 px-3 py-2 rounded-lg transition-colors ${
                 active ? "text-primary" : "text-zinc-400 hover:text-zinc-600"
               }`}
             >

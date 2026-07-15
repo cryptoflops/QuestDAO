@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ManifestoPage() {
     return (
-        <main className="min-h-dvh bg-background text-foreground py-32 px-6">
+        <main id="main-content" className="min-h-dvh bg-background text-foreground py-32 px-6">
             <div className="max-w-3xl mx-auto">
                 {/* Header */}
                 <header className="mb-24 animate-fade-in">
@@ -104,7 +104,7 @@ export default function ManifestoPage() {
                             <p className="font-bold text-2xl tracking-tight text-black">
                                 Build for Truth. Architect for Eternity.
                             </p>
-                            <footer className="mt-4 text-sm text-black/40 uppercase tracking-widest font-sans font-bold">
+                            <footer className="mt-4 text-sm text-black/60 uppercase tracking-widest font-sans font-bold">
                                 Authored by the QuestDAO Architects
                             </footer>
                         </div>

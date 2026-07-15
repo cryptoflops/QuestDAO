@@ -30,7 +30,7 @@ const ProposalRow: React.FC<ProposalRowProps> = ({
         active: 'bg-stacks-orange',
         passed: 'bg-green-500',
         rejected: 'bg-red-500',
-        pending: 'bg-stacks-black/20',
+        pending: 'bg-stacks-black/60',
     };
 
     const statusLabels = {
@@ -76,7 +76,7 @@ const ProposalRow: React.FC<ProposalRowProps> = ({
 
             {/* ID & Status */}
             <div className="md:col-span-2 flex items-center gap-4">
-                <span className="font-sans font-bold text-[10px] text-black/20 tracking-tighter">#{id.padStart(3, '0')}</span>
+                <span className="font-sans font-bold text-[10px] text-black/60 tracking-tighter">#{id.padStart(3, '0')}</span>
                 <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-stacks-grey border-[0.5px] border-black/5">
                     <span className={`w-1.5 h-1.5 rounded-full ${status === 'active' ? 'bg-primary animate-pulse' : status === 'passed' ? 'bg-green-500' : 'bg-red-500'}`}></span>
                     <span className="text-[9px] uppercase tracking-[0.2em] text-black/60 font-bold font-sans">
@@ -90,18 +90,18 @@ const ProposalRow: React.FC<ProposalRowProps> = ({
                 <h3 className="font-serif text-2xl text-stacks-black leading-tight group-hover:text-stacks-orange transition-colors tracking-tight">
                     {title}
                 </h3>
-                <p className="text-[10px] text-stacks-black/30 mt-2 font-bold font-sans uppercase tracking-[0.1em]">
+                <p className="text-[10px] text-stacks-black/60 mt-2 font-bold font-sans uppercase tracking-[0.1em]">
                     Closing at Block {endDate.replace('Block ', '')}
                 </p>
             </div>
 
             {/* Votes */}
             <div className="md:col-span-2 flex flex-col gap-2">
-                <div className="flex justify-between text-[10px] font-sans font-bold text-stacks-black/40 uppercase tracking-widest">
+                <div className="flex justify-between text-[10px] font-sans font-bold text-stacks-black/60 uppercase tracking-widest">
                     <span>Yes</span>
                     <span className="text-stacks-black">{votesFor}</span>
                 </div>
-                <div className="flex justify-between text-[10px] font-sans font-bold text-stacks-black/40 uppercase tracking-widest">
+                <div className="flex justify-between text-[10px] font-sans font-bold text-stacks-black/60 uppercase tracking-widest">
                     <span>No</span>
                     <span className="text-stacks-black">{votesAgainst}</span>
                 </div>
@@ -134,7 +134,7 @@ const ProposalRow: React.FC<ProposalRowProps> = ({
                         </button>
                     </div>
                 ) : (
-                    <button className="px-4 py-2 bg-white/30 backdrop-blur-sm border border-black/5 text-black/40 rounded-lg font-sans font-bold text-[9px] uppercase tracking-[0.2em] cursor-not-allowed">
+                    <button className="px-4 py-2 bg-white/30 backdrop-blur-sm border border-black/5 text-black/60 rounded-lg font-sans font-bold text-[9px] uppercase tracking-[0.2em] cursor-not-allowed">
                         View Audit
                     </button>
                 )}

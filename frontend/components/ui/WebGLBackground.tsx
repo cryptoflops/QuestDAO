@@ -11,6 +11,13 @@ export default function WebGLBackground() {
         setReduceMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     }, []);
 
+    const getDetailLevel = () => {
+        if (typeof navigator === 'undefined') return 64;
+        const isLowPower = (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4)
+            || (typeof window !== 'undefined' && window.devicePixelRatio < 2);
+        return isLowPower ? 64 : 128;
+    };
+
     useEffect(() => {
         if (!containerRef.current || reduceMotion) return;
 
@@ -26,7 +33,7 @@ export default function WebGLBackground() {
         camera.position.z = 5;
 
         // Multi-Blob Fluid Geometry
-        const geometry = new THREE.IcosahedronGeometry(5, 128);
+        const geometry = new THREE.IcosahedronGeometry(5, getDetailLevel());
 
         // Custom Material with iridescent/glassy feel
         const material = new THREE.MeshPhongMaterial({
@@ -116,6 +123,7 @@ export default function WebGLBackground() {
         <div
             ref={containerRef}
             className="fixed inset-0 -z-50 pointer-events-none transition-opacity duration-1000 bg-[#FAFAF9]"
+            style={{ willChange: 'transform' }}
             aria-hidden="true"
         />
     );

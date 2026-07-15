@@ -17,6 +17,7 @@ import {
 import { NETWORK, CONTRACT_ADDRESS, CONTRACTS, IS_MAINNET, API_URL } from '@/lib/constants';
 import { userSession } from '@/lib/stacks-session';
 import Container from '@/components/ui/Container';
+import PageHero from '@/components/PageHero';
 import QuestGrid from '@/components/QuestGrid';
 import QuestCard, { QuestCardProps } from '@/components/QuestCard';
 import * as StacksConnect from '@/lib/stacks';
@@ -26,6 +27,7 @@ import { QUESTS_LEARNING_DATA } from '@/lib/quests.data';
 export default function QuestsContent() {
     const [quests, setQuests] = useState<QuestCardProps[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [isAuthorized, setIsAuthorized] = useState(false);
     const [refreshCount, setRefreshCount] = useState(0);
     const [blockHeight, setBlockHeight] = useState<number>(0);
@@ -67,6 +69,7 @@ export default function QuestsContent() {
                 }
             } catch (e) {
                 console.error("Failed to fetch block height", e);
+                setError("Failed to sync with blockchain. Please check your connection.");
             }
         };
         fetchBlockHeight();
@@ -93,6 +96,7 @@ export default function QuestsContent() {
     useEffect(() => {
         const fetchQuests = async () => {
             setIsLoading(true);
+            setError(null);
             const network = NETWORK;
 
             try {
@@ -166,6 +170,7 @@ export default function QuestsContent() {
                 await checkAuth();
             } catch (e) {
                 console.error("Failed to fetch quests", e);
+                setError("Failed to load quests from the blockchain. Please try again.");
             } finally {
                 setIsLoading(false);
             }
@@ -283,30 +288,30 @@ export default function QuestsContent() {
     };
 
     return (
-        <>
+        <div id="main-content">
             {/* Header */}
-            <div className="pt-32 pb-24 relative overflow-hidden">
-                <div className="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
-                <Container className="relative z-10">
-                    <h1 className="text-balance text-7xl md:text-[clamp(4rem,10vw,10rem)] font-serif text-black mb-10 tracking-tighter leading-[0.8] italic">
-                        The <br />
-                        <span className="text-primary not-italic">Curriculum.</span>
-                    </h1>
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-                        <p className="md:col-span-8 text-2xl md:text-3xl text-stacks-black/80 font-sans font-semibold leading-tight max-w-2xl tracking-tight">
-                            Master the architecture of Bitcoin layers. <br />
-                            Complete modules to earn XP and Soulbound Badges.
-                        </p>
-                    </div>
-                </Container>
-            </div>
+            <PageHero
+                title="The"
+                accent="Curriculum."
+                subtitle={<>Master the architecture of Bitcoin layers. <br />Complete modules to earn XP and Soulbound Badges.</>}
+            />
 
             {/* Grid */}
             <div className="py-20 relative px-6 md:px-0">
                 <QuestGrid>
-                    {isLoading ? (
-                        <div className="col-span-12 space-y-12 py-10">
-                            <div className="text-center text-stacks-black/40 font-sans font-bold uppercase tracking-[0.3em] animate-pulse mb-16">
+                    {error ? (
+                        <div className="col-span-12 glass-card p-6 text-center text-red-500">
+                            <p className="font-sans font-bold text-sm mb-4">{error}</p>
+                            <button
+                                onClick={() => { setError(null); setRefreshCount(prev => prev + 1); }}
+                                className="px-6 py-2 bg-primary text-white rounded-full font-sans font-bold text-xs uppercase tracking-[0.2em] hover:bg-primary/90 transition-colors"
+                            >
+                                Retry
+                            </button>
+                        </div>
+                    ) : isLoading ? (
+                        <div className="col-span-12 space-y-8 py-6">
+                            <div className="text-center text-stacks-black/60 font-sans font-bold uppercase tracking-[0.3em] animate-pulse mb-8">
                                 Loading Academy Data...
                             </div>
                             <div className="grid grid-cols-12 gap-8">
@@ -328,7 +333,7 @@ export default function QuestsContent() {
                         </div>
                     ) : quests.length === 0 ? (
                         <div className="col-span-12 p-40 text-center space-y-6">
-                            <p className="text-stacks-black/40 font-sans font-bold uppercase tracking-[0.3em]">
+                            <p className="text-stacks-black/60 font-sans font-bold uppercase tracking-[0.3em]">
                                 End of Records.
                             </p>
                             <Link href="/" className="inline-block text-primary font-sans text-xs font-bold uppercase tracking-[0.2em] hover:underline">
@@ -349,7 +354,7 @@ export default function QuestsContent() {
             </div>
 
             {/* Protocol Management (Temporary Dev Tools) */}
-            {hasMounted && (
+            {hasMounted && process.env.NODE_ENV === 'development' && (
                 <div className="py-24 border-t-[0.5px] border-black/10 relative overflow-hidden">
                     <div className="absolute inset-0 bg-black/[0.02]" />
                     <Container className="relative z-10">
@@ -451,6 +456,6 @@ export default function QuestsContent() {
                 title={selectedQuestData?.title || ''}
                 canComplete={canComplete}
             />
-        </>
+        </div>
     );
 }

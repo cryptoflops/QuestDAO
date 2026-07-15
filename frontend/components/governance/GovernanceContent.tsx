@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Container from '@/components/ui/Container';
+import PageHero from '@/components/PageHero';
 import ProposalRow, { ProposalRowProps } from '@/components/ProposalRow';
 import Button from '@/components/ui/Button';
 import CreateProposalModal from '@/components/CreateProposalModal';
@@ -14,6 +15,7 @@ export default function GovernanceContent() {
     const [isDelegateOpen, setIsDelegateOpen] = useState(false);
     const [proposals, setProposals] = useState<ProposalRowProps[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [refreshCount, setRefreshCount] = useState(0);
     const [blockHeight, setBlockHeight] = useState<number>(0);
 
@@ -47,6 +49,7 @@ export default function GovernanceContent() {
     useEffect(() => {
         const fetchProposals = async () => {
             setIsLoading(true);
+            setError(null);
             const network = NETWORK;
 
             try {
@@ -93,6 +96,7 @@ export default function GovernanceContent() {
 
             } catch (e) {
                 console.error("Failed to fetch proposals", e);
+                setError("Failed to load governance data. Please try again.");
             } finally {
                 setIsLoading(false);
             }
@@ -102,41 +106,33 @@ export default function GovernanceContent() {
     }, [refreshCount]);
 
     return (
-        <>
+        <div id="main-content">
             {/* Header */}
-            <div className="pt-32 pb-24 relative overflow-hidden">
-                <div className="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
-                <Container className="relative z-10">
-                    <h1 className="text-balance text-7xl md:text-[clamp(4rem,10vw,10rem)] font-serif text-black mb-10 tracking-tighter leading-[0.8] italic">
-                        The <br />
-                        <span className="text-primary not-italic">Council.</span>
-                    </h1>
-                    <p className="text-2xl md:text-3xl text-black/80 font-sans font-semibold mb-16 leading-tight max-w-2xl tracking-tight">
-                        Governance is restricted to certified members. <br />
-                        Decisions made here are executed on-chain.
-                    </p>
+            <PageHero
+                title="The"
+                accent="Council."
+                subtitle={<>Governance is restricted to certified members. <br />Decisions made here are executed on-chain.</>}
+            >
+                <div className="flex flex-col md:flex-row gap-6 mt-12">
+                    <Button
+                        variant="signature"
+                        size="lg"
+                        className="px-12 rounded-full"
+                        onClick={() => setIsCreateOpen(true)}
+                    >
+                        Submit Proposal
+                    </Button>
 
-                    <div className="flex flex-col md:flex-row gap-6">
-                        <Button
-                            variant="signature"
-                            size="lg"
-                            className="px-12 rounded-full"
-                            onClick={() => setIsCreateOpen(true)}
-                        >
-                            Submit Proposal
-                        </Button>
-
-                        <Button
-                            variant="ghost"
-                            size="lg"
-                            className="px-12 bg-white/60 backdrop-blur-md border border-border hover:bg-white/90 rounded-full"
-                            onClick={() => setIsDelegateOpen(true)}
-                        >
-                            Delegate Votes
-                        </Button>
-                    </div>
-                </Container>
-            </div>
+                    <Button
+                        variant="ghost"
+                        size="lg"
+                        className="px-12 bg-white/60 backdrop-blur-md border border-border hover:bg-white/90 rounded-full"
+                        onClick={() => setIsDelegateOpen(true)}
+                    >
+                        Delegate Votes
+                    </Button>
+                </div>
+            </PageHero>
 
             <CreateProposalModal isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} />
             <DelegateModal isOpen={isDelegateOpen} onClose={() => setIsDelegateOpen(false)} />
@@ -146,7 +142,7 @@ export default function GovernanceContent() {
                 <Container>
                     <div className="flex items-center justify-between mb-12">
                         <div className="flex items-center gap-6">
-                            <h2 className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-stacks-black/40">
+                            <h2 className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-stacks-black/60">
                                 Active Docket
                             </h2>
                             <button
@@ -157,13 +153,13 @@ export default function GovernanceContent() {
                                 {isLoading ? '[ Syncing... ]' : '[ Refresh ]'}
                             </button>
                         </div>
-                        <span className="text-[10px] font-sans font-bold text-stacks-black/20 uppercase tracking-widest">
+                        <span className="text-[10px] font-sans font-bold text-stacks-black/60 uppercase tracking-widest">
                             Block Height: {blockHeight || 'Syncing...'}
                         </span>
                     </div>
 
                     <div className="bg-white/90 backdrop-blur-2xl border border-black/5 rounded-2xl p-6 md:p-12 shadow-sm">
-                        <div className="hidden md:grid grid-cols-12 gap-4 pb-8 border-b border-stacks-black/5 text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-stacks-black/30">
+                        <div className="hidden md:grid grid-cols-12 gap-4 pb-8 border-b border-stacks-black/5 text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-stacks-black/60">
                             <div className="col-span-2">Status</div>
                             <div className="col-span-6">Proposal</div>
                             <div className="col-span-2">Tally</div>
@@ -171,12 +167,22 @@ export default function GovernanceContent() {
                         </div>
 
                         <div>
-                            {isLoading ? (
-                                <div className="p-20 text-center text-stacks-black/40 font-sans font-bold uppercase tracking-[0.3em] animate-pulse">
+                            {error ? (
+                                <div className="glass-card p-6 text-center text-red-500">
+                                    <p className="font-sans font-bold text-sm mb-4">{error}</p>
+                                    <button
+                                        onClick={() => { setError(null); setRefreshCount(prev => prev + 1); }}
+                                        className="px-6 py-2 bg-primary text-white rounded-full font-sans font-bold text-xs uppercase tracking-[0.2em] hover:bg-primary/90 transition-colors"
+                                    >
+                                        Retry
+                                    </button>
+                                </div>
+                            ) : isLoading ? (
+                                <div className="p-20 text-center text-stacks-black/60 font-sans font-bold uppercase tracking-[0.3em] animate-pulse">
                                     Extracting Ledger Data...
                                 </div>
                             ) : proposals.length === 0 ? (
-                                <div className="p-20 text-center text-stacks-black/40 font-sans font-bold uppercase tracking-[0.3em]">
+                                <div className="p-20 text-center text-stacks-black/60 font-sans font-bold uppercase tracking-[0.3em]">
                                     Docket is Empty.
                                 </div>
                             ) : (
@@ -188,6 +194,6 @@ export default function GovernanceContent() {
                     </div>
                 </Container>
             </div>
-        </>
+        </div>
     );
 }

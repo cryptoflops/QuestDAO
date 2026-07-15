@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Container from '@/components/ui/Container';
+import PageHero from '@/components/PageHero';
 import { fetchCallReadOnlyFunction, cvToJSON, uintCV, standardPrincipalCV } from '@/lib/stacks';
 import { NETWORK, CONTRACT_ADDRESS, CONTRACTS, IS_MAINNET } from '@/lib/constants';
 import { userSession } from '@/lib/stacks-session';
@@ -11,7 +12,9 @@ export default function LeaderboardContent() {
     const [userXP, setUserXP] = useState<number>(0);
     const [userBadges, setUserBadges] = useState<number>(0);
     const [userBnsName, setUserBnsName] = useState<string | null>(null);
+    const [isBnsLoading, setIsBnsLoading] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [hasMounted, setHasMounted] = useState(false);
 
     const REGISTRY_NAME = CONTRACTS.REGISTRY;
@@ -38,6 +41,7 @@ export default function LeaderboardContent() {
             const network = NETWORK;
 
             try {
+                setError(null);
                 const countResult = await fetchCallReadOnlyFunction({
                     contractAddress: CONTRACT_ADDRESS,
                     contractName: REGISTRY_NAME,
@@ -83,6 +87,7 @@ export default function LeaderboardContent() {
                 setUserBadges(totalBadges);
             } catch (e) {
                 console.error("Failed to fetch leaderboard data", e);
+                setError("Failed to load leaderboard data. Please try again.");
             } finally {
                 setIsLoading(false);
             }
@@ -90,7 +95,11 @@ export default function LeaderboardContent() {
 
         fetchUserData();
         if (userAddress) {
-            defaultResolver.resolveName(userAddress).then(setUserBnsName);
+            setIsBnsLoading(true);
+            defaultResolver.resolveName(userAddress).then(name => {
+                setUserBnsName(name);
+                setIsBnsLoading(false);
+            });
         }
     }, [userAddress]);
 
@@ -101,25 +110,29 @@ export default function LeaderboardContent() {
     ];
 
     return (
-        <main className="min-h-dvh bg-transparent text-foreground pb-40">
+        <main id="main-content" className="min-h-dvh bg-transparent text-foreground pb-40">
             {/* Header */}
-            <div className="pt-32 pb-24 relative overflow-hidden">
-                <div className="absolute inset-0 bg-primary/5 mix-blend-multiply"></div>
-                <Container className="relative z-10">
-                    <h1 className="text-balance text-7xl md:text-[clamp(4rem,10vw,10rem)] font-serif text-black mb-10 tracking-tighter leading-[0.8] italic">
-                        The <br />
-                        <span className="text-primary not-italic">Ranks.</span>
-                    </h1>
-                    <p className="text-2xl md:text-3xl text-black/80 font-sans font-semibold leading-tight max-w-2xl tracking-tight">
-                        Ranking is determined by XP earned through rigorous smart contract validation on Bitcoin.
-                    </p>
-                </Container>
-            </div>
+            <PageHero
+                title="The"
+                accent="Ranks."
+                subtitle="Ranking is determined by XP earned through rigorous smart contract validation on Bitcoin."
+            />
 
             <Container className="py-20">
+                {error ? (
+                    <div className="glass-card p-6 text-center text-red-500">
+                        <p className="font-sans font-bold text-sm mb-4">{error}</p>
+                        <button
+                            onClick={() => { setError(null); }}
+                            className="px-6 py-2 bg-primary text-white rounded-full font-sans font-bold text-xs uppercase tracking-[0.2em] hover:bg-primary/90 transition-colors"
+                        >
+                            Retry
+                        </button>
+                    </div>
+                ) : (
                 <div className="bg-white/90 backdrop-blur-2xl border border-black/5 rounded-2xl overflow-hidden shadow-sm">
                     {/* Header */}
-                    <div className="grid grid-cols-12 gap-4 px-10 py-6 bg-stacks-grey/50 border-b border-stacks-black/5 text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-stacks-black/30">
+                    <div className="grid grid-cols-12 gap-4 px-10 py-6 bg-stacks-grey/50 border-b border-stacks-black/5 text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-stacks-black/60">
                         <div className="col-span-2">Rank</div>
                         <div className="col-span-6">Architect</div>
                         <div className="col-span-2 text-right">Badges</div>
@@ -161,7 +174,11 @@ export default function LeaderboardContent() {
                             </div>
                             <div className="col-span-6 flex flex-col">
                                 <span className="font-sans font-bold text-xl text-black truncate max-w-[200px] md:max-w-none">
-                                    {userBnsName ?? userAddress}
+                                    {isBnsLoading ? (
+                                        <span className="inline-block w-32 h-4 bg-stacks-black/10 rounded animate-pulse" />
+                                    ) : (
+                                        userBnsName ?? userAddress
+                                    )}
                                 </span>
                                 <span className="text-[10px] text-primary font-bold font-sans uppercase tracking-[0.2em] mt-2">
                                     ACTIVE ARCHITECT
@@ -178,15 +195,16 @@ export default function LeaderboardContent() {
 
                     {hasMounted && !userAddress && (
                         <div className="p-20 text-center border-t border-stacks-black/5 bg-stacks-grey/20 space-y-4">
-                            <p className="text-stacks-black/40 font-sans font-bold text-[10px] uppercase tracking-[0.3em] animate-pulse">
+                            <p className="text-stacks-black/60 font-sans font-bold text-[10px] uppercase tracking-[0.3em] animate-pulse">
                                 [ Connect Wallet to synchronize ranking ]
                             </p>
-                            <p className="text-stacks-black/30 font-sans text-xs">
+                            <p className="text-stacks-black/60 font-sans text-xs">
                                 Use the wallet button in the top navigation to join the ranks.
                             </p>
                         </div>
                     )}
                 </div>
+                )}
             </Container>
         </main>
     );

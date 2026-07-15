@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { X } from 'lucide-react';
 import { QuestContent } from '@/lib/quests.data';
 
 interface QuestModalProps {
@@ -24,11 +25,33 @@ const QuestModal: React.FC<QuestModalProps> = ({
     canComplete
 }) => {
     const [proof, setProof] = React.useState('');
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (isOpen && modalRef.current) {
+            modalRef.current.focus();
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && isOpen) {
+                onClose();
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, onClose]);
 
     if (!isOpen || !content) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+        <div
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="quest-modal-title"
+        >
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/40 backdrop-blur-xl animate-fade-in"
@@ -36,7 +59,11 @@ const QuestModal: React.FC<QuestModalProps> = ({
             />
 
             {/* Modal Content */}
-            <div className="relative w-full max-w-5xl h-full max-h-[90vh] bg-white rounded-[3rem] shadow-2xl flex flex-col overflow-hidden border border-black/5 animate-scale-in">
+            <div
+                ref={modalRef}
+                tabIndex={-1}
+                className="relative w-full max-w-5xl h-full max-h-[90vh] bg-white rounded-[3rem] shadow-2xl flex flex-col overflow-hidden border border-black/5 animate-scale-in"
+            >
 
                 {/* Header */}
                 <div className="px-8 md:px-16 pt-12 pb-8 border-b border-black/5 flex justify-between items-start">
@@ -45,25 +72,26 @@ const QuestModal: React.FC<QuestModalProps> = ({
                             <span className="px-3 py-1 rounded-lg bg-primary/10 text-primary font-mono text-[10px] uppercase tracking-widest font-bold">
                                 Module {content.id}
                             </span>
-                            <span className="text-black/40 font-sans text-[10px] uppercase tracking-widest font-bold">
+                            <span className="text-black/60 font-sans text-[10px] uppercase tracking-widest font-bold">
                                 {content.readingTime} Reading
                             </span>
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-serif text-black tracking-tighter italic leading-none">
+                        <h2 id="quest-modal-title" className="text-4xl md:text-6xl font-serif text-black tracking-tighter italic leading-none">
                             {title}
                         </h2>
                     </div>
                     <button
                         onClick={onClose}
-                        className="w-12 h-12 rounded-full border border-black/5 flex items-center justify-center hover:bg-black/5 transition-colors"
+                        className="p-2 hover:bg-black/5 rounded-full transition-colors"
+                        aria-label="Close"
                     >
-                        <span className="text-2xl">×</span>
+                        <X size={20} />
                     </button>
                 </div>
 
                 {/* Sub-Header: Objectives */}
                 <div className="px-8 md:px-16 py-6 bg-[#F5F5F7]/30 flex flex-wrap gap-8 items-center border-b border-black/5">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">Objectives:</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-black/60">Objectives:</span>
                     {content.objectives.map((obj, i) => (
                         <div key={i} className="flex items-center gap-2">
                             <div className="w-1 h-1 rounded-full bg-primary"></div>
@@ -96,7 +124,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
 
                 {/* Knowledge Check Section */}
                 <div className="px-8 md:px-16 py-8 bg-black/[0.02] border-t border-black/5">
-                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-black/40 mb-4 flex items-center gap-2">
+                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-black/60 mb-4 flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
                         {content.type === 'identity' ? 'Identity Verification' : 'Knowledge Check'}
                     </h4>
@@ -117,7 +145,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                 {/* Footer Action */}
                 <div className="px-8 md:px-16 py-10 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6 bg-white shrink-0">
                     <div className="flex flex-col gap-2">
-                        <p className="text-xs font-sans font-bold text-black/40 uppercase tracking-widest text-center md:text-left">
+                        <p className="text-xs font-sans font-bold text-black/60 uppercase tracking-widest text-center md:text-left">
                             Proof of Logic Required:
                         </p>
                         <div className="flex items-center gap-3 text-center md:text-left">
@@ -131,7 +159,7 @@ const QuestModal: React.FC<QuestModalProps> = ({
                         onClick={() => onComplete(proof)}
                         disabled={isProcessing || !canComplete || !proof.trim()}
                         className={`group relative px-12 py-5 rounded-full font-sans font-bold text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all shadow-2xl w-full md:w-auto
-                            ${(canComplete && proof.trim()) ? 'bg-black text-white hover:scale-110 active:scale-95' : 'bg-black/5 text-black/20 cursor-not-allowed'}
+                            ${(canComplete && proof.trim()) ? 'bg-black text-white hover:scale-110 active:scale-95' : 'bg-black/5 text-black/60 cursor-not-allowed'}
                         `}
                     >
                         <span className="relative z-10">{isProcessing ? 'Verifying...' : content.type === 'identity' ? 'Verify Identity & Claim XP' : 'Mint Badge (on-chain proof)'}</span>

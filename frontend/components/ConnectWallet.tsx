@@ -54,7 +54,7 @@ export default function ConnectWallet() {
         return (
             <div className="flex items-center gap-4">
                 <div className="flex flex-col items-end">
-                    <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-stacks-black/20">Active</span>
+                    <span className="text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-stacks-black/60">Active</span>
                     <span className="text-[14px] font-bold text-stacks-black font-sans leading-none mt-1">
                         {bnsName ?? `${address.slice(0, 6)}...${address.slice(-4)}`}
                     </span>
