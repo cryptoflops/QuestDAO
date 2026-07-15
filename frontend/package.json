@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "rm -rf .next/cache",
+    "postbuild": "rm -rf .next/cache && find .next -type l -exec sh -c 'tgt=\"$(readlink \"$1\")\" && rm \"$1\" && cp -rL \"$tgt\" \"$1\"' _ {} \\;",
     "start": "next start",
     "lint": "eslint"
   },
