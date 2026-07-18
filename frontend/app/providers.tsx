@@ -8,6 +8,7 @@ const WebGLBackground = dynamic(() => import('@/components/ui/WebGLBackground'),
 const AppKitInitializer = dynamic(() => import('@/components/AppKitInitializer'), { ssr: false });
 const Navbar = dynamic(() => import('@/components/Navbar'), { ssr: false });
 const MobileNav = dynamic(() => import('@/components/MobileNav'), { ssr: false });
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
 
 // 4. Create QueryClient
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ export function Providers({ children }: { children: ReactNode }) {
             <WebGLBackground />
             <Navbar />
             {children}
+            <Footer />
             <MobileNav />
         </QueryClientProvider>
     );

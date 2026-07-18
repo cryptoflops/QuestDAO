@@ -296,6 +296,22 @@ export default function QuestsContent() {
                 subtitle={<>Master the architecture of Bitcoin layers. <br />Complete modules to earn XP and Soulbound Badges.</>}
             />
 
+            {/* Network Status Bar */}
+            <div className="max-w-4xl mx-auto mb-8 grid grid-cols-3 text-center gap-4">
+              <div className="bg-white/90 border border-black/5 rounded-2xl p-4">
+                <p className="text-2xl font-bold text-[#F04A10]">5</p>
+                <p className="text-xs text-stacks-black/50 uppercase tracking-wider">Quests Available</p>
+              </div>
+              <div className="bg-white/90 border border-black/5 rounded-2xl p-4">
+                <p className="text-2xl font-bold text-[#F04A10]">Stacks</p>
+                <p className="text-xs text-stacks-black/50 uppercase tracking-wider">Network</p>
+              </div>
+              <div className="bg-white/90 border border-black/5 rounded-2xl p-4">
+                <p className="text-2xl font-bold text-emerald-600">●</p>
+                <p className="text-xs text-stacks-black/50 uppercase tracking-wider">Live</p>
+              </div>
+            </div>
+
             {/* Grid */}
             <div className="py-20 relative px-6 md:px-0">
                 <QuestGrid>
