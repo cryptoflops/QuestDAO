@@ -1,9 +1,9 @@
 # Changelog
 
-## [Unreleased] - 2026-07-24
+## [Unreleased] - 2026-07-26
 
 ### Changed
 - Updated dependencies to latest stable versions
 
 ### Fixed
-- Addressed timeout handling for slow RPC responses
+- Corrected gas estimation for complex contract calls
