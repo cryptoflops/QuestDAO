@@ -6,4 +6,4 @@
 - Updated dependencies to latest stable versions
 
 ### Fixed
-- Corrected gas estimation for complex contract calls
+- Fixed decimal formatting for sub-STX amounts
