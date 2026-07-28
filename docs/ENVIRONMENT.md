@@ -1,6 +1,6 @@
 # QuestDAO Environment Guide
 
-Generated: 2026-07-27T07:01:17.627Z
+Generated: 2026-07-28T01:00:05.980Z
 
 ## Requirements
 - Node.js >= 18
@@ -9,4 +9,4 @@ Generated: 2026-07-27T07:01:17.627Z
 ## Validation
 Ensure `.env` matches `.env.example` before deployment.
 
-Build: 6f6t4hj6
+Build: 6bufgbt7
