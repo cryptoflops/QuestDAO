@@ -6,4 +6,4 @@
 - Enhanced mobile responsiveness on smaller screens
 
 ### Fixed
-- Corrected gas estimation for complex contract calls
+- Addressed timeout handling for slow RPC responses
