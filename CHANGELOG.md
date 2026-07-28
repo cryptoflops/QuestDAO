@@ -1,9 +1,9 @@
 # Changelog
 
-## [Unreleased] - 2026-07-26
+## [Unreleased] - 2026-07-28
 
 ### Changed
-- Updated dependencies to latest stable versions
+- Enhanced mobile responsiveness on smaller screens
 
 ### Fixed
-- Fixed decimal formatting for sub-STX amounts
+- Corrected gas estimation for complex contract calls
